@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tony Cagnard | Portfolio Étudiant BTS SIO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2ecc71; /* Vert trèfle dynamique */
+            --dark-color: #2c3e50;
+            --bg-color: #ffffff;
+            --bg-light: #f8f9fa;
+            --text-color: #34495e;
+            --light-text: #7f8c8d;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding-top: 70px; }
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 15px 10%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; box-sizing: border-box; }
+        .nav-logo { font-weight: 700; font-size: 24px; color: var(--dark-color); text-decoration: none; }
+        .nav-links { list-style: none; margin: 0; padding: 0; display: flex; }
+        .nav-links li { margin-left: 30px; }
+        .nav-links a { text-decoration: none; color: var(--text-color); font-weight: 600; font-size: 16px; transition: color 0.3s ease; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary-color); }
+        section { padding: 100px 10%; }
+        .section-title { text-align: center; font-size: 36px; font-weight: 700; margin-bottom: 60px; color: var(--dark-color); position: relative; }
+        .section-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background-color: var(--primary-color); border-radius: 2px; }
+        #hero { display: flex; align-items: center; justify-content: space-between; min-height: calc(100vh - 70px); background-color: var(--bg-light); }
+        .hero-text { max-width: 600px; }
+        .hero-text h3 { font-size: 24px; font-weight: 400; }
+        .hero-text h1 { font-size: 60px; margin: 10px 0; color: var(--dark-color); }
+        .hero-text h2 { font-size: 28px; font-weight: 600; color: var(--primary-color); min-height: 40px; }
+        .hero-description { font-size: 16px; color: var(--light-text); line-height: 1.7; margin-top: 25px; max-width: 550px; }
+        .typing-cursor { display: inline-block; width: 3px; height: 30px; background-color: var(--primary-color); animation: blink 0.7s infinite; margin-left: 5px; }
+        @keyframes blink { 50% { opacity: 0; } }
+        .hero-buttons { margin-top: 30px; }
+        .cta-button { text-decoration: none; padding: 12px 25px; border-radius: 5px; font-weight: 600; transition: all 0.3s ease; margin-right: 15px; display: inline-block; margin-top: 10px; }
+        .primary { background-color: var(--primary-color); color: white; }
+        .primary:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4); }
+        .secondary { background-color: transparent; color: var(--dark-color); border: 2px solid var(--dark-color); }
+        .secondary:hover { background-color: var(--dark-color); color: white; }
+        .hero-image-container { width: 350px; height: 350px; position: relative; }
+        .hero-image { width: 100%; height: 100%; border-radius: 50%; background-size: cover; background-position: center; border: 10px solid var(--primary-color); /* CHANGER L'IMAGE ICI */ background-image: url('https://i.imgur.com/8bX5mbW.png'); }
+        #competences { background: white; }
+        .skills-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        .skill-category h4 { color: var(--dark-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-bottom: 20px; }
+        .skill-category ul { list-style: none; padding: 0; }
+        .skill-category li { margin-bottom: 15px; display: flex; align-items: center; }
+        .skill-category i { color: var(--primary-color); margin-right: 15px; }
+        .language-skill { margin-bottom: 20px; }
+        .language-skill p { margin: 0 0 8px 0; font-weight: 600; color: var(--text-color); }
+        .progress-bar-container { width: 100%; background-color: #e9ecef; border-radius: 5px; height: 10px; overflow: hidden; }
+        .progress-bar { height: 100%; background-color: var(--primary-color); border-radius: 5px; transition: width 0.5s ease-in-out; }
+        #projets { background-color: var(--bg-light); }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .project-card { background: white; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.07); overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s ease; }
+        .project-card:hover { transform: translateY(-10px); }
+        .project-image { width: 100%; height: 200px; object-fit: cover; }
+        .project-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+        .project-content h4 { margin: 0 0 10px 0; font-size: 20px; color: var(--dark-color); }
+        .project-content p { font-size: 14px; color: var(--light-text); line-height: 1.6; flex-grow: 1; }
+        .project-tags { margin: 15px 0; }
+        .project-tags span { background: #e0e0e0; color: var(--light-text); padding: 5px 10px; border-radius: 5px; font-size: 12px; margin-right: 5px; display: inline-block; margin-bottom: 5px; }
+        .project-links a { margin-right: 15px; color: var(--primary-color); text-decoration: none; font-weight: 600; }
+        #parcours { background: white; }
+        .timeline { position: relative; max-width: 900px; margin: 0 auto; }
+        .timeline::after { content: ''; position: absolute; width: 4px; background-color: var(--primary-color); top: 0; bottom: 0; left: 30px; margin-left: -2px; }
+        .timeline-container { padding: 15px 0 15px 70px; position: relative; width: 100%; box-sizing: border-box; }
+        
+        /* --- MODIFICATION : DE CERCLE À BARRE --- */
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 25px; /* Largeur de la barre */
+            height: 4px; /* Hauteur de la barre */
+            left: 30px; /* Position de départ sur la ligne verticale */
+            background-color: var(--primary-color);
+            top: 32px; /* Alignement vertical */
+            z-index: 1;
+            /* border-radius et border supprimés */
+        }
+        
+        .timeline-content { padding: 20px 30px; background-color: var(--bg-light); position: relative; border-radius: 6px; }
+        .timeline-content h3, .timeline-content h4, .timeline-content p { margin: 5px 0; }
+        #interets { background-color: var(--bg-light); }
+        .interests-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
+        .interest-card { background: white; padding: 30px; text-align: center; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s ease; }
+        .interest-card:hover { transform: translateY(-5px); }
+        .interest-card i { font-size: 48px; color: var(--primary-color); margin-bottom: 20px; }
+        .interest-card h4 { margin: 0; font-size: 18px; color: var(--dark-color); }
+        #contact { background-color: var(--bg-color); }
+        .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; max-width: 1000px; margin: 0 auto; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px; font-family: 'Poppins', sans-serif; }
+        .contact-info p { display: flex; align-items: center; font-size: 16px; margin-bottom: 20px; }
+        .contact-info i { color: var(--primary-color); font-size: 24px; margin-right: 20px; }
+        footer { background-color: var(--dark-color); color: var(--light-text); text-align: center; padding: 40px 10%; }
+        .social-links a { color: white; margin: 0 15px; font-size: 24px; transition: color 0.3s ease; }
+        .social-links a:hover { color: var(--primary-color); }
+        footer p { margin-top: 20px; font-size: 14px; }
+        .hidden { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .show { opacity: 1; transform: translateY(0); }
+        @media screen and (max-width: 992px) {
+            .hero-text h1 { font-size: 48px; }
+            .hero-text h2 { font-size: 24px; }
+            .hero-image-container { width: 300px; height: 300px; }
+        }
+        @media screen and (max-width: 768px) {
+            .navbar { padding: 15px 5%; }
+            .nav-links { display: none; }
+            section { padding: 80px 5%; }
+            #hero { flex-direction: column-reverse; text-align: center; padding-top: 50px; }
+            .hero-image-container { margin-bottom: 40px; width: 250px; height: 250px;}
+            .timeline::after { left: 20px; }
+            .timeline-container { padding-left: 60px; padding-right: 15px; }
+            .timeline-container::after { left: 20px; width: 20px; }
+            .contact-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="#hero" class="nav-logo">Tony Cagnard</a>
+        <ul class="nav-links">
+            <li><a href="#competences">Compétences</a></li>
+            <li><a href="#projets">Projets</a></li>
+            <li><a href="#parcours">Parcours</a></li>
+            <li><a href="#interets">Intérêts</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="hero">
+        <div class="hero-text">
+            <h3>Bonjour, je suis</h3>
+            <h1>Tony Cagnard</h1>
+            <h2><span id="typing-effect"></span><span class="typing-cursor"></span></h2>
+            <p class="hero-description">
+                Passionné par l'infrastructure et la sécurité des systèmes d'information, je cherche à appliquer mes connaissances théoriques dans un environnement professionnel stimulant. Je suis motivé, curieux et prêt à relever de nouveaux défis en alternance.
+            </p>
+            <div class="hero-buttons">
+                <a href="#" class="cta-button primary">Télécharger mon CV (PDF)</a>
+                <a href="#contact" class="cta-button secondary">Me Contacter</a>
+            </div>
+        </div>
+        <div class="hero-image-container">
+            <div class="hero-image"></div>
+        </div>
+    </section>
+
+    <section id="competences" class="hidden">
+        <h2 class="section-title">Mes Compétences Techniques</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h4><i class="fas fa-server"></i> Systèmes d'exploitation</h4>
+                <ul>
+                    <li><i class="fab fa-windows"></i> Installation & configuration de Windows</li>
+                    <li><i class="fab fa-linux"></i> Administration de base sur Linux</li>
+                    <li><i class="fas fa-shield-alt"></i> Gestion des permissions (Active Directory)</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h4><i class="fas fa-sitemap"></i> Réseaux</h4>
+                <ul>
+                    <li><i class="fas fa-ethernet"></i> Modèle OSI & TCP/IP</li>
+                    <li><i class="fas fa-route"></i> Configuration de base (VLAN, routage)</li>
+                    <li><i class="fas fa-tools"></i> Outils de diagnostic (Ping, Wireshark)</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h4><i class="fas fa-code-branch"></i> Langages & Développement</h4>
+                <div class="language-skill">
+                    <p>HTML & CSS</p>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 70%;"></div>
+                    </div>
+                </div>
+                 <div class="language-skill">
+                    <p>Python</p>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 55%;"></div>
+                    </div>
+                </div>
+                 <div class="language-skill">
+                    <p>JavaScript (Notions)</p>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 40%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projets" class="hidden">
+        <h2 class="section-title">Mes Projets</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <img src="https://via.placeholder.com/400x200.png?text=Home+Lab+Proxmox" alt="Projet Home Lab" class="project-image">
+                <div class="project-content">
+                    <h4>Mise en place d'un Home Lab</h4>
+                    <p>Déploiement d'un hyperviseur Proxmox sur une machine dédiée pour héberger plusieurs machines virtuelles (serveur web, Active Directory, serveur de fichiers) et explorer la virtualisation.</p>
+                    <div class="project-tags"><span>Proxmox</span><span>Linux</span><span>Windows Server</span><span>Réseau</span></div>
+                    <div class="project-links"><a href="#">Voir sur GitHub <i class="fas fa-arrow-right"></i></a></div>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://via.placeholder.com/400x200.png?text=Monitoring+Réseau" alt="Projet Monitoring" class="project-image">
+                <div class="project-content">
+                    <h4>Supervision réseau avec Raspberry Pi</h4>
+                    <p>Configuration d'un Raspberry Pi avec des outils de monitoring (ex: Zabbix, Nagios) pour superviser l'état des services et des équipements d'un petit réseau domestique.</p>
+                    <div class="project-tags"><span>Raspberry Pi</span><span>Zabbix</span><span>Linux</span><span>Monitoring</span></div>
+                    <div class="project-links"><a href="#">Voir sur GitHub <i class="fas fa-arrow-right"></i></a></div>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://via.placeholder.com/400x200.png?text=Script+d'automatisation" alt="Projet Scripting" class="project-image">
+                <div class="project-content">
+                    <h4>Script d'automatisation de backups</h4>
+                    <p>Création d'un script en Python/Powershell pour automatiser la sauvegarde de dossiers importants vers un disque dur externe ou un partage réseau, avec envoi de notifications par email.</p>
+                    <div class="project-tags"><span>Python</span><span>Powershell</span><span>Automatisation</span><span>Scripting</span></div>
+                    <div class="project-links"><a href="#">Voir sur GitHub <i class="fas fa-arrow-right"></i></a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="parcours" class="hidden">
+         <h2 class="section-title">Mon Parcours</h2>
+         <div class="timeline">
+             <div class="timeline-container hidden">
+                <div class="timeline-content">
+                    <h3>Stage chez Late Area</h3>
+                    <h4>2025 - [Lieu du stage]</h4>
+                    <p>Découverte du milieu professionnel et application des compétences en infrastructure.</p>
+                </div>
+             </div>
+             <div class="timeline-container hidden">
+                <div class="timeline-content">
+                    <h3>Baccalauréat Systèmes Numériques</h3>
+                    <h4>2022-2025 - Lycée J. Prévert</h4>
+                    <p>Formation en systèmes, réseaux et électronique. Obtention du bac.</p>
+                </div>
+             </div>
+             <div class="timeline-container hidden">
+                <div class="timeline-content">
+                    <h3>Stage Technique</h3>
+                    <h4>2024 - Lycée Bougainville</h4>
+                    <p>Maintenance, installation d'OS, gestion BIOS/UEFI.</p>
+                </div>
+             </div>
+             <div class="timeline-container hidden">
+                <div class="timeline-content">
+                    <h3>Stage Technique</h3>
+                    <h4>2023 - Lycée Bougainville</h4>
+                    <p>Diagnostic et réparation de pannes hardware & software.</p>
+                </div>
+             </div>
+             <div class="timeline-container hidden">
+                <div class="timeline-content">
+                    <h3>Stage chez SCC</h3>
+                    <h4>2022 - [Lieu du stage]</h4>
+                    <p>Première immersion en entreprise et observation des métiers de l'IT.</p>
+                </div>
+             </div>
+             <div class="timeline-container hidden">
+                <div class="timeline-content">
+                    <h3>Diplôme National du Brevet</h3>
+                    <h4>2021 - [Nom du collège]</h4>
+                    <p>Obtention du diplôme.</p>
+                </div>
+             </div>
+         </div>
+    </section>
+
+    <section id="interets" class="hidden">
+        <h2 class="section-title">Centres d'intérêt</h2>
+        <div class="interests-grid">
+            <div class="interest-card">
+                <i class="fas fa-microchip"></i>
+                <h4>Construction PC</h4>
+            </div>
+            <div class="interest-card">
+                <i class="fas fa-code"></i>
+                <h4>Développement Web & Jeu</h4>
+            </div>
+            <div class="interest-card">
+                <i class="fas fa-gamepad"></i>
+                <h4>Jeu Vidéo</h4>
+            </div>
+            <div class="interest-card">
+                <i class="fas fa-table-tennis-paddle-ball"></i>
+                <h4>Tennis</h4>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="hidden">
+        <h2 class="section-title">Contactez-moi</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Discutons de votre projet</h3>
+                <p>Je suis activement à la recherche d'une alternance et serais ravi d'échanger avec vous. N'hésitez pas à me contacter par email, téléphone ou via ce formulaire.</p>
+                <p><i class="fas fa-envelope"></i> tcagnard@lyceejacquesprevert.fr</p>
+                <p><i class="fas fa-phone"></i> 06 04 51 78 90</p>
+                <p><i class="fas fa-map-marker-alt"></i> Brie-Comte-Robert, France</p>
+            </div>
+            <form action="#" class="contact-form">
+                <input type="text" placeholder="Votre nom" required>
+                <input type="email" placeholder="Votre email" required>
+                <textarea rows="6" placeholder="Votre message" required></textarea>
+                <button type="submit" class="cta-button primary">Envoyer le message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="#" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+        <p>&copy; 2024 Tony Cagnard. Conçu pour ma recherche d'alternance.</p>
+    </footer>
+
+    <script>
+        const typingElement = document.getElementById('typing-effect');
+        const words = ["Étudiant en BTS SIO.", "Passionné d'infrastructure.", "À la recherche d'une alternance."];
+        let wordIndex = 0, charIndex = 0, isDeleting = false;
+        function type() {
+            const currentWord = words[wordIndex];
+            if (isDeleting) { typingElement.textContent = currentWord.substring(0, charIndex-- -1); } 
+            else { typingElement.textContent = currentWord.substring(0, charIndex++ + 1); }
+            if (!isDeleting && charIndex === currentWord.length) { setTimeout(() => isDeleting = true, 2000); } 
+            else if (isDeleting && charIndex === 0) { isDeleting = false; wordIndex = (wordIndex + 1) % words.length; }
+            setTimeout(type, isDeleting ? 100 : 150);
+        }
+        document.addEventListener('DOMContentLoaded', () => { if(typingElement) setTimeout(type, 1000); });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('show'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
