@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Animation de frappe ---
     const typingElement = document.getElementById('typing-effect');
     if (typingElement) {
-        const words = ["Étudiant en BTS SIO.", "Passionné d'infrastructure.", "À la recherche d'une alternance."];
+        const words = ["Étudiant en BTS SIO.", "Passionné d'informatique.", "À la recherche d'une alternance."];
         let wordIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
