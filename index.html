@@ -6,117 +6,8 @@
     <title>Tony Cagnard | Portfolio Étudiant BTS SIO</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #2ecc71; /* Vert trèfle dynamique */
-            --orange-color: #f39c12; /* Orange pour "en dev" */
-            --red-color: #e74c3c; /* Rouge pour "abandonné" */
-            --dark-color: #2c3e50;
-            --bg-color: #ffffff;
-            --bg-light: #f8f9fa;
-            --text-color: #34495e;
-            --light-text: #7f8c8d;
-        }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding-top: 70px; }
-        .navbar { position: fixed; top: 0; left: 0; width: 100%; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 15px 10%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; box-sizing: border-box; }
-        .nav-logo { font-weight: 700; font-size: 24px; color: var(--dark-color); text-decoration: none; }
-        .nav-links { list-style: none; margin: 0; padding: 0; display: flex; }
-        .nav-links li { margin-left: 30px; }
-        .nav-links a { text-decoration: none; color: var(--text-color); font-weight: 600; font-size: 16px; transition: color 0.3s ease; }
-        .nav-links a:hover, .nav-links a.active { color: var(--primary-color); }
-        section { padding: 100px 10%; }
-        .section-title { text-align: center; font-size: 36px; font-weight: 700; margin-bottom: 60px; color: var(--dark-color); position: relative; }
-        .section-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background-color: var(--primary-color); border-radius: 2px; }
-        #hero { display: flex; align-items: center; justify-content: space-between; min-height: calc(80vh - 70px); background-color: var(--bg-light); }
-        .hero-text { max-width: 600px; }
-        .hero-text h3 { font-size: 24px; font-weight: 400; }
-        .hero-text h1 { font-size: 60px; margin: 10px 0; color: var(--dark-color); }
-        .hero-text h2 { font-size: 28px; font-weight: 600; color: var(--primary-color); min-height: 40px; }
-        .hero-description { font-size: 16px; color: var(--light-text); line-height: 1.7; margin-top: 25px; max-width: 550px; }
-        .typing-cursor { display: inline-block; width: 3px; height: 30px; background-color: var(--primary-color); animation: blink 0.7s infinite; margin-left: 5px; }
-        @keyframes blink { 50% { opacity: 0; } }
-        .hero-buttons { margin-top: 30px; }
-        .cta-button { text-decoration: none; padding: 12px 25px; border-radius: 5px; font-weight: 600; transition: all 0.3s ease; margin-right: 15px; display: inline-block; margin-top: 10px; }
-        .primary { background-color: var(--primary-color); color: white; }
-        .primary:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4); }
-        .secondary { background-color: transparent; color: var(--dark-color); border: 2px solid var(--dark-color); }
-        .secondary:hover { background-color: var(--dark-color); color: white; }
-        .hero-image-container { width: 350px; height: 350px; position: relative; }
-        .hero-image { width: 100%; height: 100%; border-radius: 50%; background-size: cover; background-position: center; border: 10px solid var(--primary-color); /* CHANGER L'IMAGE ICI */ background-image: url('https://i.imgur.com/8bX5mbW.png'); }
-        #competences { background: white; }
-        .skills-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
-        .skill-category h4 { color: var(--dark-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-bottom: 20px; }
-        .skill-category ul { list-style: none; padding: 0; }
-        .skill-category li { margin-bottom: 15px; display: flex; align-items: center; }
-        .skill-category i { color: var(--primary-color); margin-right: 15px; }
-        .language-skill { margin-bottom: 20px; }
-        .language-skill p { margin: 0 0 8px 0; font-weight: 600; color: var(--text-color); }
-        .progress-bar-container { width: 100%; background-color: #e9ecef; border-radius: 5px; height: 10px; overflow: hidden; }
-        .progress-bar { height: 100%; background-color: var(--primary-color); border-radius: 5px; transition: width 0.5s ease-in-out; }
-        #projets { background-color: var(--bg-light); }
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .project-card { background: white; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.07); overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s ease; position: relative;}
-        .project-card:hover { transform: translateY(-10px); }
-        .project-media { width: 100%; height: 350px; object-fit: cover; border-bottom: 1px solid #ecf0f1;}
-        .project-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
-        .project-content h4 { margin: 0 0 10px 0; font-size: 20px; color: var(--dark-color); }
-        .project-content p { font-size: 14px; color: var(--light-text); line-height: 1.6; flex-grow: 1; }
-        .project-tags { margin: 15px 0; }
-        .project-tags span { background: #e0e0e0; color: var(--light-text); padding: 5px 10px; border-radius: 5px; font-size: 12px; margin-right: 5px; display: inline-block; margin-bottom: 5px; }
-        .project-links a { margin-right: 15px; color: var(--primary-color); text-decoration: none; font-weight: 600; }
-
-        /* --- STYLES POUR LES STATUTS DE PROJET --- */
-        .project-status { position: absolute; top: 15px; right: 15px; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; color: white; }
-        .status-completed { background-color: var(--primary-color); }
-        .status-in-progress { background-color: var(--orange-color); }
-        .status-abandoned { background-color: var(--red-color); }
-
-        #avantages { background-color: var(--bg-color); }
-        .advantages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .advantage-card { background: var(--bg-light); border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; overflow: hidden; }
-        .advantage-card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        .advantage-card-image { width: 100%; height: 450px; object-fit: cover; background-color: white; padding: 10px; box-sizing: border-box;}
-        .advantage-card-content { padding: 30px; text-align: center; }
-        .advantage-card-content h4 { margin: 0 0 10px 0; font-size: 20px; color: var(--dark-color); }
-        .advantage-card-content p { font-size: 15px; line-height: 1.6; color: var(--light-text); margin: 0;}
-        #parcours { background: white; }
-        .timeline-wrapper { position: relative; max-width: 800px; margin: 0 auto; padding: 20px 0; }
-        .timeline-wrapper::before { content: ''; position: absolute; left: 10px; top: 0; height: 100%; width: 4px; background-color: #e9ecef; border-radius: 2px; }
-        .timeline-event { position: relative; padding-left: 60px; margin-bottom: 50px; }
-        .timeline-event:last-child { margin-bottom: 0; }
-        .timeline-node { position: absolute; left: 0; top: 5px; width: 24px; height: 24px; background-color: var(--primary-color); border-radius: 50%; border: 4px solid var(--bg-color); box-shadow: 0 0 0 3px var(--primary-color); }
-        .timeline-content { background-color: var(--bg-light); padding: 20px; border-radius: 8px; }
-        .timeline-content h3 { font-size: 18px; font-weight: 600; color: var(--dark-color); margin: 0 0 5px 0; }
-        .timeline-content h4 { font-size: 15px; color: var(--text-color); margin: 0 0 10px 0; font-weight: 600;}
-        .timeline-content p { font-size: 14px; color: var(--light-text); line-height: 1.6; margin: 0; }
-        #interets { background-color: var(--bg-light); }
-        .interests-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
-        .interest-card { background: white; padding: 30px; text-align: center; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s ease; }
-        .interest-card:hover { transform: translateY(-5px); }
-        .interest-card i { font-size: 48px; color: var(--primary-color); margin-bottom: 20px; }
-        .interest-card h4 { margin: 0; font-size: 18px; color: var(--dark-color); }
-        .interest-card p { font-size: 13px; color: var(--light-text); margin-top: 10px; }
-        #contact { background-color: var(--bg-color); }
-        .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; max-width: 1000px; margin: 0 auto; }
-        .contact-form input, .contact-form textarea { width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px; font-family: 'Poppins', sans-serif; }
-        .contact-info p { display: flex; align-items: center; font-size: 16px; margin-bottom: 20px; }
-        .contact-info i { color: var(--primary-color); font-size: 24px; margin-right: 20px; }
-        footer { background-color: var(--dark-color); color: var(--light-text); text-align: center; padding: 40px 10%; }
-        .social-links a { color: white; margin: 0 15px; font-size: 24px; transition: color 0.3s ease; }
-        .social-links a:hover { color: var(--primary-color); }
-        footer p { margin-top: 20px; font-size: 14px; }
-        .hidden { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-        .show { opacity: 1; transform: translateY(0); }
-        
-        @media screen and (max-width: 768px) {
-            .navbar { padding: 15px 5%; } .nav-links { display: none; }
-            section { padding: 80px 5%; }
-            #hero { flex-direction: column-reverse; text-align: center; }
-            .hero-image-container { margin-bottom: 40px; width: 250px; height: 250px;}
-            .contact-container { grid-template-columns: 1fr; }
-        }
-    </style>
+    <!-- Lien vers votre fichier CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -191,6 +82,7 @@
         <h2 class="section-title">Mes Projets</h2>
         <div class="projects-grid">
             <div class="project-card">
+                <span class="project-status status-completed">Terminé</span>
                 <video class="project-media" autoplay loop muted playsinline>
                     <source src="image/VID_20250507_091750.mp4" type="video/mp4">
                     Votre navigateur ne supporte pas la vidéo.
@@ -199,7 +91,7 @@
                     <h4>Projet Ruban LED RGB</h4>
                     <p>Création d'un système de ruban LED contrôlé, démontrant des compétences en électronique et en programmation de base en Arduino.</p>
                     <div class="project-tags"><span>Électronique</span><span>Arduino/ESP</span><span>Travail de Groupe</span></div>
-                    <div class="project-links"><a href="#"></i></a></div>
+                    <div class="project-links"><a href="#">Voir sur GitHub <i class="fas fa-arrow-right"></i></a></div>
                 </div>
             </div>
             <div class="project-card">
@@ -243,7 +135,7 @@
                 </div>
             </div>
             <div class="advantage-card">
-                <img src="image/u7119954916_httpss.mj.rundmtS9igEsdI_rendu_3D_style_minimalis_85385abb-02ba-4b34-a58c-bbd46a52633e_3-ezgif.com-video-to-gif-converter.gif" alt="Talent formé" class="advantage-card-image">
+                <img src="image/u7119954916_httpss.mj.rundmtS9igEsdI_rendu_3D_style_minimalis_85385abb-02ba-4b34-a58c-bbd46a52633e_3-ezgif.com-video-to-gif-converter.gif"Talent formé" class="advantage-card-image">
                 <div class="advantage-card-content">
                     <h4>Un Talent Formé à Votre Culture</h4>
                     <p>L'alternance permet de me former à vos outils et méthodes. À la fin du contrat, vous disposez d'un collaborateur déjà parfaitement intégré et opérationnel.</p>
@@ -354,23 +246,7 @@
         <p>&copy; 2024 Tony Cagnard. Conçu pour ma recherche d'alternance.</p>
     </footer>
 
-    <script>
-        const typingElement = document.getElementById('typing-effect');
-        const words = ["Étudiant en BTS SIO.", "Passionné d'infrastructure.", "À la recherche d'une alternance."];
-        let wordIndex = 0, charIndex = 0, isDeleting = false;
-        function type() {
-            const currentWord = words[wordIndex];
-            if (isDeleting) { typingElement.textContent = currentWord.substring(0, charIndex-- -1); } 
-            else { typingElement.textContent = currentWord.substring(0, charIndex++ + 1); }
-            if (!isDeleting && charIndex === currentWord.length) { setTimeout(() => isDeleting = true, 2000); } 
-            else if (isDeleting && charIndex === 0) { isDeleting = false; wordIndex = (wordIndex + 1) % words.length; }
-            setTimeout(type, isDeleting ? 100 : 150);
-        }
-        document.addEventListener('DOMContentLoaded', () => { if(typingElement) setTimeout(type, 1000); });
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('show'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
-    </script>
+    <!-- Lien vers votre fichier JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
