@@ -9,6 +9,8 @@
     <style>
         :root {
             --primary-color: #2ecc71; /* Vert trèfle dynamique */
+            --orange-color: #f39c12; /* Orange pour "en dev" */
+            --red-color: #e74c3c; /* Rouge pour "abandonné" */
             --dark-color: #2c3e50;
             --bg-color: #ffffff;
             --bg-light: #f8f9fa;
@@ -26,7 +28,7 @@
         section { padding: 100px 10%; }
         .section-title { text-align: center; font-size: 36px; font-weight: 700; margin-bottom: 60px; color: var(--dark-color); position: relative; }
         .section-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background-color: var(--primary-color); border-radius: 2px; }
-        #hero { display: flex; align-items: center; justify-content: space-between; min-height: calc(100vh - 70px); background-color: var(--bg-light); }
+        #hero { display: flex; align-items: center; justify-content: space-between; min-height: calc(80vh - 70px); background-color: var(--bg-light); }
         .hero-text { max-width: 600px; }
         .hero-text h3 { font-size: 24px; font-weight: 400; }
         .hero-text h1 { font-size: 60px; margin: 10px 0; color: var(--dark-color); }
@@ -54,41 +56,47 @@
         .progress-bar { height: 100%; background-color: var(--primary-color); border-radius: 5px; transition: width 0.5s ease-in-out; }
         #projets { background-color: var(--bg-light); }
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .project-card { background: white; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.07); overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s ease; }
+        .project-card { background: white; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.07); overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s ease; position: relative;}
         .project-card:hover { transform: translateY(-10px); }
-        .project-image { width: 100%; height: 200px; object-fit: cover; }
+        .project-media { width: 100%; height: 350px; object-fit: cover; border-bottom: 1px solid #ecf0f1;}
         .project-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
         .project-content h4 { margin: 0 0 10px 0; font-size: 20px; color: var(--dark-color); }
         .project-content p { font-size: 14px; color: var(--light-text); line-height: 1.6; flex-grow: 1; }
         .project-tags { margin: 15px 0; }
         .project-tags span { background: #e0e0e0; color: var(--light-text); padding: 5px 10px; border-radius: 5px; font-size: 12px; margin-right: 5px; display: inline-block; margin-bottom: 5px; }
         .project-links a { margin-right: 15px; color: var(--primary-color); text-decoration: none; font-weight: 600; }
+
+        /* --- STYLES POUR LES STATUTS DE PROJET --- */
+        .project-status { position: absolute; top: 15px; right: 15px; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; color: white; }
+        .status-completed { background-color: var(--primary-color); }
+        .status-in-progress { background-color: var(--orange-color); }
+        .status-abandoned { background-color: var(--red-color); }
+
+        #avantages { background-color: var(--bg-color); }
+        .advantages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .advantage-card { background: var(--bg-light); border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; overflow: hidden; }
+        .advantage-card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .advantage-card-image { width: 100%; height: 450px; object-fit: cover; background-color: white; padding: 10px; box-sizing: border-box;}
+        .advantage-card-content { padding: 30px; text-align: center; }
+        .advantage-card-content h4 { margin: 0 0 10px 0; font-size: 20px; color: var(--dark-color); }
+        .advantage-card-content p { font-size: 15px; line-height: 1.6; color: var(--light-text); margin: 0;}
         #parcours { background: white; }
-        .timeline { position: relative; max-width: 900px; margin: 0 auto; }
-        .timeline::after { content: ''; position: absolute; width: 4px; background-color: var(--primary-color); top: 0; bottom: 0; left: 30px; margin-left: -2px; }
-        .timeline-container { padding: 15px 0 15px 70px; position: relative; width: 100%; box-sizing: border-box; }
-        
-        /* --- MODIFICATION : DE CERCLE À BARRE --- */
-        .timeline-container::after {
-            content: '';
-            position: absolute;
-            width: 25px; /* Largeur de la barre */
-            height: 4px; /* Hauteur de la barre */
-            left: 30px; /* Position de départ sur la ligne verticale */
-            background-color: var(--primary-color);
-            top: 32px; /* Alignement vertical */
-            z-index: 1;
-            /* border-radius et border supprimés */
-        }
-        
-        .timeline-content { padding: 20px 30px; background-color: var(--bg-light); position: relative; border-radius: 6px; }
-        .timeline-content h3, .timeline-content h4, .timeline-content p { margin: 5px 0; }
+        .timeline-wrapper { position: relative; max-width: 800px; margin: 0 auto; padding: 20px 0; }
+        .timeline-wrapper::before { content: ''; position: absolute; left: 10px; top: 0; height: 100%; width: 4px; background-color: #e9ecef; border-radius: 2px; }
+        .timeline-event { position: relative; padding-left: 60px; margin-bottom: 50px; }
+        .timeline-event:last-child { margin-bottom: 0; }
+        .timeline-node { position: absolute; left: 0; top: 5px; width: 24px; height: 24px; background-color: var(--primary-color); border-radius: 50%; border: 4px solid var(--bg-color); box-shadow: 0 0 0 3px var(--primary-color); }
+        .timeline-content { background-color: var(--bg-light); padding: 20px; border-radius: 8px; }
+        .timeline-content h3 { font-size: 18px; font-weight: 600; color: var(--dark-color); margin: 0 0 5px 0; }
+        .timeline-content h4 { font-size: 15px; color: var(--text-color); margin: 0 0 10px 0; font-weight: 600;}
+        .timeline-content p { font-size: 14px; color: var(--light-text); line-height: 1.6; margin: 0; }
         #interets { background-color: var(--bg-light); }
         .interests-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
         .interest-card { background: white; padding: 30px; text-align: center; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s ease; }
         .interest-card:hover { transform: translateY(-5px); }
         .interest-card i { font-size: 48px; color: var(--primary-color); margin-bottom: 20px; }
         .interest-card h4 { margin: 0; font-size: 18px; color: var(--dark-color); }
+        .interest-card p { font-size: 13px; color: var(--light-text); margin-top: 10px; }
         #contact { background-color: var(--bg-color); }
         .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; max-width: 1000px; margin: 0 auto; }
         .contact-form input, .contact-form textarea { width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px; font-family: 'Poppins', sans-serif; }
@@ -100,20 +108,12 @@
         footer p { margin-top: 20px; font-size: 14px; }
         .hidden { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
         .show { opacity: 1; transform: translateY(0); }
-        @media screen and (max-width: 992px) {
-            .hero-text h1 { font-size: 48px; }
-            .hero-text h2 { font-size: 24px; }
-            .hero-image-container { width: 300px; height: 300px; }
-        }
+        
         @media screen and (max-width: 768px) {
-            .navbar { padding: 15px 5%; }
-            .nav-links { display: none; }
+            .navbar { padding: 15px 5%; } .nav-links { display: none; }
             section { padding: 80px 5%; }
-            #hero { flex-direction: column-reverse; text-align: center; padding-top: 50px; }
+            #hero { flex-direction: column-reverse; text-align: center; }
             .hero-image-container { margin-bottom: 40px; width: 250px; height: 250px;}
-            .timeline::after { left: 20px; }
-            .timeline-container { padding-left: 60px; padding-right: 15px; }
-            .timeline-container::after { left: 20px; width: 20px; }
             .contact-container { grid-template-columns: 1fr; }
         }
     </style>
@@ -125,6 +125,7 @@
         <ul class="nav-links">
             <li><a href="#competences">Compétences</a></li>
             <li><a href="#projets">Projets</a></li>
+            <li><a href="#avantages">Avantages</a></li>
             <li><a href="#parcours">Parcours</a></li>
             <li><a href="#interets">Intérêts</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -172,21 +173,15 @@
                 <h4><i class="fas fa-code-branch"></i> Langages & Développement</h4>
                 <div class="language-skill">
                     <p>HTML & CSS</p>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar" style="width: 70%;"></div>
-                    </div>
+                    <div class="progress-bar-container"><div class="progress-bar" style="width: 70%;"></div></div>
                 </div>
                  <div class="language-skill">
                     <p>Python</p>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar" style="width: 55%;"></div>
-                    </div>
+                    <div class="progress-bar-container"><div class="progress-bar" style="width: 55%;"></div></div>
                 </div>
                  <div class="language-skill">
                     <p>JavaScript (Notions)</p>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar" style="width: 40%;"></div>
-                    </div>
+                    <div class="progress-bar-container"><div class="progress-bar" style="width: 40%;"></div></div>
                 </div>
             </div>
         </div>
@@ -196,101 +191,141 @@
         <h2 class="section-title">Mes Projets</h2>
         <div class="projects-grid">
             <div class="project-card">
-                <img src="https://via.placeholder.com/400x200.png?text=Home+Lab+Proxmox" alt="Projet Home Lab" class="project-image">
+                <video class="project-media" autoplay loop muted playsinline>
+                    <source src="image/VID_20250507_091750.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la vidéo.
+                </video>
                 <div class="project-content">
-                    <h4>Mise en place d'un Home Lab</h4>
-                    <p>Déploiement d'un hyperviseur Proxmox sur une machine dédiée pour héberger plusieurs machines virtuelles (serveur web, Active Directory, serveur de fichiers) et explorer la virtualisation.</p>
-                    <div class="project-tags"><span>Proxmox</span><span>Linux</span><span>Windows Server</span><span>Réseau</span></div>
-                    <div class="project-links"><a href="#">Voir sur GitHub <i class="fas fa-arrow-right"></i></a></div>
+                    <h4>Projet Ruban LED RGB</h4>
+                    <p>Création d'un système de ruban LED contrôlé, démontrant des compétences en électronique et en programmation de base en Arduino.</p>
+                    <div class="project-tags"><span>Électronique</span><span>Arduino/ESP</span><span>Travail de Groupe</span></div>
+                    <div class="project-links"><a href="#"></i></a></div>
                 </div>
             </div>
             <div class="project-card">
-                <img src="https://via.placeholder.com/400x200.png?text=Monitoring+Réseau" alt="Projet Monitoring" class="project-image">
+                <span class="project-status status-in-progress">En développement</span>
+                <img src="image/mythologie.png" alt="Projet Mythologie" class="project-media">
                 <div class="project-content">
-                    <h4>Supervision réseau avec Raspberry Pi</h4>
-                    <p>Configuration d'un Raspberry Pi avec des outils de monitoring (ex: Zabbix, Nagios) pour superviser l'état des services et des équipements d'un petit réseau domestique.</p>
-                    <div class="project-tags"><span>Raspberry Pi</span><span>Zabbix</span><span>Linux</span><span>Monitoring</span></div>
-                    <div class="project-links"><a href="#">Voir sur GitHub <i class="fas fa-arrow-right"></i></a></div>
+                    <h4>Site web sur les mythologies</h4>
+                    <p>J'ai fait un site web en Django sur les mythologies du monde intitulé MythPédia.</p>
+                    <div class="project-tags"><span>Django</span><span>Python</span><span>HTML/CSS</span></div>
+                    <div class="project-links"><a href="https://github.com/TonyCagnard/mythpedia">Voir sur GitHub <i class="fas fa-arrow-right"></i></a></div>
                 </div>
             </div>
             <div class="project-card">
-                <img src="https://via.placeholder.com/400x200.png?text=Script+d'automatisation" alt="Projet Scripting" class="project-image">
+                <span class="project-status status-completed">Terminé</span>
+                <img src="https://i.imgur.com/Y13Z1s0.png" alt="Projet Scripting" class="project-media">
                 <div class="project-content">
                     <h4>Script d'automatisation de backups</h4>
-                    <p>Création d'un script en Python/Powershell pour automatiser la sauvegarde de dossiers importants vers un disque dur externe ou un partage réseau, avec envoi de notifications par email.</p>
-                    <div class="project-tags"><span>Python</span><span>Powershell</span><span>Automatisation</span><span>Scripting</span></div>
+                    <p>Création d'un script en Python/Powershell pour automatiser la sauvegarde de dossiers importants vers un partage réseau.</p>
+                    <div class="project-tags"><span>Python</span><span>Powershell</span><span>Automatisation</span></div>
                     <div class="project-links"><a href="#">Voir sur GitHub <i class="fas fa-arrow-right"></i></a></div>
                 </div>
             </div>
         </div>
     </section>
     
+    <section id="avantages" class="hidden">
+        <h2 class="section-title">Les avantages de prendre un alternant</h2>
+        <div class="advantages-grid">
+            <div class="advantage-card">
+                <img src="image/u7119954916_httpss.mj.run1BgbehwQe5I_Satisfying_animation_loo_1c4bd830-21f2-4ba7-9985-02419a04d3ad_3-ezgif.com-video-to-gif-converter.gif" alt="Renfort d'équipe" class="advantage-card-image">
+                <div class="advantage-card-content">
+                    <h4>Un Renfort pour l'Équipe</h4>
+                    <p>Je suis une ressource capable de prendre en charge des tâches quotidiennes (maintenance, support), libérant ainsi du temps pour vos collaborateurs expérimentés.</p>
+                </div>
+            </div>
+            <div class="advantage-card">
+                <img src="image/u7119954916_httpss.mj.runqS7S-dPi0gI_gold_euro_coins_falling__a3c9c19e-1f9c-4374-95e9-dc416b3dbdc6_2-ezgif.com-video-to-gif-converter.gif" alt="Coût maîtrisé" class="advantage-card-image">
+                <div class="advantage-card-content">
+                    <h4>Un Coût Maîtrisé et des Aides</h4>
+                    <p>La rémunération est un pourcentage du SMIC et l'entreprise bénéficie d'une aide de 6000€ ainsi que d'une exonération de la plupart des cotisations sociales.</p>
+                </div>
+            </div>
+            <div class="advantage-card">
+                <img src="image/u7119954916_httpss.mj.rundmtS9igEsdI_rendu_3D_style_minimalis_85385abb-02ba-4b34-a58c-bbd46a52633e_3-ezgif.com-video-to-gif-converter.gif" alt="Talent formé" class="advantage-card-image">
+                <div class="advantage-card-content">
+                    <h4>Un Talent Formé à Votre Culture</h4>
+                    <p>L'alternance permet de me former à vos outils et méthodes. À la fin du contrat, vous disposez d'un collaborateur déjà parfaitement intégré et opérationnel.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="parcours" class="hidden">
-         <h2 class="section-title">Mon Parcours</h2>
-         <div class="timeline">
-             <div class="timeline-container hidden">
+        <h2 class="section-title">Mon Parcours</h2>
+        <div class="timeline-wrapper">
+            <div class="timeline-event">
+                <div class="timeline-node"></div>
                 <div class="timeline-content">
                     <h3>Stage chez Late Area</h3>
-                    <h4>2025 - [Lieu du stage]</h4>
-                    <p>Découverte du milieu professionnel et application des compétences en infrastructure.</p>
+                    <h4>2025 - Saint-Germain-En-Laye</h4>
+                    <p>Application des compétences en infrastructure et découverte du milieu professionnel.</p>
                 </div>
-             </div>
-             <div class="timeline-container hidden">
+            </div>
+            <div class="timeline-event">
+                <div class="timeline-node"></div>
                 <div class="timeline-content">
                     <h3>Baccalauréat Systèmes Numériques</h3>
                     <h4>2022-2025 - Lycée J. Prévert</h4>
-                    <p>Formation en systèmes, réseaux et électronique. Obtention du bac.</p>
+                    <p>Formation en systèmes, réseaux et électronique, soldée par l'obtention du bac.</p>
                 </div>
-             </div>
-             <div class="timeline-container hidden">
+            </div>
+            <div class="timeline-event">
+                <div class="timeline-node"></div>
                 <div class="timeline-content">
                     <h3>Stage Technique</h3>
                     <h4>2024 - Lycée Bougainville</h4>
-                    <p>Maintenance, installation d'OS, gestion BIOS/UEFI.</p>
+                    <p>Maintenance, installation d'OS, et gestion des configurations BIOS/UEFI.</p>
                 </div>
-             </div>
-             <div class="timeline-container hidden">
+            </div>
+            <div class="timeline-event">
+                <div class="timeline-node"></div>
                 <div class="timeline-content">
                     <h3>Stage Technique</h3>
                     <h4>2023 - Lycée Bougainville</h4>
-                    <p>Diagnostic et réparation de pannes hardware & software.</p>
+                    <p>Diagnostic et réparation de pannes matérielles et logicielles.</p>
                 </div>
-             </div>
-             <div class="timeline-container hidden">
+            </div>
+            <div class="timeline-event">
+                <div class="timeline-node"></div>
                 <div class="timeline-content">
                     <h3>Stage chez SCC</h3>
-                    <h4>2022 - [Lieu du stage]</h4>
+                    <h4>2022 - Lieusaint</h4>
                     <p>Première immersion en entreprise et observation des métiers de l'IT.</p>
                 </div>
-             </div>
-             <div class="timeline-container hidden">
+            </div>
+             <div class="timeline-event">
+                <div class="timeline-node"></div>
+                <div class="timeline-content">
+                    <h3>Stage de 3ème</h3>
+                    <h4>2021 - Mathematic</h4>
+                    <p>Découverte VFX, GFX, montage vidéo et design 3D.</p>
+                </div>
+            </div>
+            <div class="timeline-event">
+                <div class="timeline-node"></div>
                 <div class="timeline-content">
                     <h3>Diplôme National du Brevet</h3>
-                    <h4>2021 - [Nom du collège]</h4>
+                    <h4>2021 - George Brassens</h4>
                     <p>Obtention du diplôme.</p>
                 </div>
-             </div>
-         </div>
+            </div>
+        </div>
     </section>
 
     <section id="interets" class="hidden">
         <h2 class="section-title">Centres d'intérêt</h2>
         <div class="interests-grid">
+            <div class="interest-card"><i class="fas fa-microchip"></i><h4>Construction PC</h4></div>
+            <div class="interest-card"><i class="fas fa-code"></i><h4>Développement Web & Jeu</h4></div>
+            <div class="interest-card"><i class="fas fa-gamepad"></i><h4>Jeu Vidéo</h4></div>
+            <div class="interest-card"><i class="fas fa-table-tennis-paddle-ball"></i><h4>Tennis</h4></div>
+            <div class="interest-card"><i class="fas fa-landmark"></i><h4>Histoire</h4></div>
             <div class="interest-card">
-                <i class="fas fa-microchip"></i>
-                <h4>Construction PC</h4>
-            </div>
-            <div class="interest-card">
-                <i class="fas fa-code"></i>
-                <h4>Développement Web & Jeu</h4>
-            </div>
-            <div class="interest-card">
-                <i class="fas fa-gamepad"></i>
-                <h4>Jeu Vidéo</h4>
-            </div>
-            <div class="interest-card">
-                <i class="fas fa-table-tennis-paddle-ball"></i>
-                <h4>Tennis</h4>
+                <i class="fas fa-globe-europe"></i>
+                <h4>Géographie</h4>
+                <p>L'emplacement des pays et leurs drapeaux.</p>
             </div>
         </div>
     </section>
@@ -306,10 +341,7 @@
                 <p><i class="fas fa-map-marker-alt"></i> Brie-Comte-Robert, France</p>
             </div>
             <form action="#" class="contact-form">
-                <input type="text" placeholder="Votre nom" required>
-                <input type="email" placeholder="Votre email" required>
-                <textarea rows="6" placeholder="Votre message" required></textarea>
-                <button type="submit" class="cta-button primary">Envoyer le message</button>
+                <input type="text" placeholder="Votre nom" required><input type="email" placeholder="Votre email" required><textarea rows="6" placeholder="Votre message" required></textarea><button type="submit" class="cta-button primary">Envoyer le message</button>
             </form>
         </div>
     </section>
