@@ -221,18 +221,30 @@
         </div>
     </section>
 
-    <section id="contact" class="hidden">
+           <section id="contact" class="hidden">
         <h2 class="section-title">Contactez-moi</h2>
         <div class="contact-container">
             <div class="contact-info">
                 <h3>Discutons de votre projet</h3>
                 <p>Je suis activement à la recherche d'une alternance et serais ravi d'échanger avec vous. N'hésitez pas à me contacter par email, téléphone ou via ce formulaire.</p>
-                <p><i class="fas fa-envelope"></i> tcagnard@lyceejacquesprevert.fr</p>
+                <p><i class="fas fa-envelope"></i> tonycagnard55@gmail.com</p>
                 <p><i class="fas fa-phone"></i> 06 04 51 78 90</p>
                 <p><i class="fas fa-map-marker-alt"></i> Brie-Comte-Robert, France</p>
             </div>
-            <form action="#" class="contact-form">
-                <input type="text" placeholder="Votre nom" required><input type="email" placeholder="Votre email" required><textarea rows="6" placeholder="Votre message" required></textarea><button type="submit" class="cta-button primary">Envoyer le message</button>
+            
+            <!-- FORMULAIRE MODIFIÉ AVEC VOTRE CODE FORMSPREE -->
+            <form id="contact-form" action="https://formspree.io/f/mjkeljkw" method="POST" class="contact-form">
+                <!-- Champ pour le nom -->
+                 <input type="text" name="name" placeholder="Votre nom" required>
+                
+                <!-- Champ pour l'email -->
+                <input type="email" name="email" placeholder="Votre email" required>
+                
+                <!-- Champ pour le message -->
+                <textarea name="message" rows="6" placeholder="Votre message" required></textarea>
+                
+                <!-- Bouton d'envoi -->
+                <button type="submit" class="cta-button primary">Envoyer le message</button>
             </form>
         </div>
     </section>

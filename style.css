@@ -104,3 +104,32 @@ footer p { margin-top: 20px; font-size: 14px; }
     .hero-image-container { margin-bottom: 40px; width: 250px; height: 250px;}
     .contact-container { grid-template-columns: 1fr; }
 }
+/* --- STYLES POUR LA NOTIFICATION DU FORMULAIRE --- */
+.notification {
+    position: fixed;
+    top: 90px; /* Juste en dessous de la barre de navigation */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 25px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    z-index: 2000;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translate(-50%, -20px);
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.notification.success {
+    background-color: var(--primary-color); /* Vert */
+}
+
+.notification.error {
+    background-color: var(--red-color); /* Rouge */
+}
