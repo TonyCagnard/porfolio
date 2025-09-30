@@ -3,10 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Titre et Description pour le SEO -->
     <title>Tony Cagnard | Portfolio Étudiant BTS SIO</title>
+    <meta name="title" content="Tony Cagnard | Portfolio Étudiant BTS SIO" />
+    <meta name="description" content="Passionné par le développement, la cybersécurité, l'informatique et l'intelligence artificielle, je recherche une alternance. Découvrez mon portfolio et mes projets." /> <!-- Description un peu plus détaillée -->
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.tonycagnard.site/" /> <!-- Assurez-vous que cette URL est correcte -->
+    <meta property="og:title" content="Tony Cagnard | Portfolio Étudiant BTS SIO" />
+    <meta property="og:description" content="Passionné par le développement, la cybersécurité, l'informatique et l'intelligence artificielle, je recherche une alternance. Découvrez mon portfolio et mes projets." />
+    <!-- !!! IMPORTANT !!! Remplacez cette image par une image pertinente pour votre portfolio -->
+    <meta property="og:image" content="https://www.tonycagnard.site/images/meta_image.jpg" /> <!-- Exemple : une image de votre logo, de vous, ou d'un projet phare -->
+
+    <!-- X (Twitter) -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://www.tonycagnard.site/" /> <!-- Assurez-vous que cette URL est correcte -->
+    <meta property="twitter:title" content="Tony Cagnard | Portfolio Étudiant BTS SIO" />
+    <meta property="twitter:description" content="Passionné par le développement, la cybersécurité, l'informatique et l'intelligence artificielle, je recherche une alternance. Découvrez mon portfolio et mes projets." />
+    <!-- !!! IMPORTANT !!! Remplacez cette image par une image pertinente pour votre portfolio -->
+    <meta property="twitter:image" content="https://www.tonycagnard.site/images/meta_image.jpg" /> <!-- Exemple : une image de votre logo, de vous, ou d'un projet phare -->
+
+    <!-- Autres balises meta et liens CSS/JS -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <!-- Lien vers votre fichier CSS (vous pouvez laisser celui-ci pour les autres styles) -->
+    <!-- Lien vers votre fichier CSS -->
     <link rel="stylesheet" href="style.css">
 
     <!-- Bloc de styles CSS intégré pour la photo de profil -->
@@ -39,8 +61,8 @@
         /* Styles pour la photo de profil à l'intérieur du cercle */
         .hero-profile-pic {
             display: block; /* Évite les espaces indésirables sous l'image */
-            width: 85%; /* Fait en sorte que l'image prenne 85% de la largeur du conteneur .hero-image */
-            height: 85%; /* Fait en sorte que l'image prenne 85% de la hauteur du conteneur .hero-image */
+            width: 100%; /* Fait en sorte que l'image prenne 100% de la largeur du conteneur .hero-image */
+            height: 100%; /* Fait en sorte que l'image prenne 100% de la hauteur du conteneur .hero-image */
             border-radius: 50%; /* Rend l'image elle-même ronde */
             object-fit: cover; /* Assure que l'image couvre la zone sans déformation */
             /* Vous pouvez ajouter une petite bordure blanche si vous le souhaitez : */
@@ -60,7 +82,7 @@
             }
 
             .hero-image-container {
-                margin-left: 0px; /* Supprime la marge gauche sur mobile */
+                margin-left: 0; /* Supprime la marge gauche sur mobile */
                 width: 200px; /* Taille plus petite pour le conteneur sur mobile */
                 height: 200px;
             }
