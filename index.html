@@ -6,8 +6,76 @@
     <title>Tony Cagnard | Portfolio Étudiant BTS SIO</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <!-- Lien vers votre fichier CSS -->
+    <!-- Lien vers votre fichier CSS (vous pouvez laisser celui-ci pour les autres styles) -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Bloc de styles CSS intégré pour la photo de profil -->
+    <style>
+        /* Styles pour le conteneur de l'image (le cercle vert) */
+        .hero-image-container {
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 300px; /* Ajustez la taille du cercle vert si nécessaire */
+            height: 300px;
+            margin-left: 40px; /* Espace entre le texte et l'image */
+        }
+
+        .hero-image {
+            /* Styles pour le cercle vert lui-même */
+            width: 100%;
+            height: 100%;
+            border-radius: 50%; /* Rend le fond rond */
+            border: 8px solid #28a745; /* Couleur verte pour la bordure du cercle */
+            background-color: transparent; /* Ou une autre couleur de fond si vous préférez */
+            display: flex; /* Permet de centrer l'image à l'intérieur */
+            justify-content: center;
+            align-items: center;
+            position: relative; /* Pour un positionnement précis */
+            overflow: hidden; /* Assure que l'image ne déborde pas du cercle */
+        }
+
+        /* Styles pour la photo de profil à l'intérieur du cercle */
+        .hero-profile-pic {
+            display: block; /* Évite les espaces indésirables sous l'image */
+            width: 85%; /* Fait en sorte que l'image prenne 85% de la largeur du conteneur .hero-image */
+            height: 85%; /* Fait en sorte que l'image prenne 85% de la hauteur du conteneur .hero-image */
+            border-radius: 50%; /* Rend l'image elle-même ronde */
+            object-fit: cover; /* Assure que l'image couvre la zone sans déformation */
+            /* Vous pouvez ajouter une petite bordure blanche si vous le souhaitez : */
+            /* border: 3px solid #fff; */
+        }
+
+        /* Responsive pour le hero */
+        @media (max-width: 768px) {
+            #hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-text {
+                margin-right: 0;
+                margin-bottom: 30px;
+            }
+
+            .hero-image-container {
+                margin-left: 0px; /* Supprime la marge gauche sur mobile */
+                width: 200px; /* Taille plus petite pour le conteneur sur mobile */
+                height: 200px;
+            }
+
+            .hero-profile-pic {
+                width: 90%; /* Légère modification pour mobile */
+                height: 90%;
+            }
+
+            .hero-image {
+                width: 100%; /* S'adapte à la taille du conteneur hero-image-container */
+                height: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -37,8 +105,9 @@
             </div>
         </div>
         <div class="hero-image-container">
-            <!-- On conserve le div hero-image pour le cercle vert, et on y ajoute une img pour la photo -->
+            <!-- Le div hero-image conserve son rôle pour le cercle vert -->
             <div class="hero-image">
+                <!-- L'image de profil est maintenant à l'intérieur du div hero-image -->
                 <!-- Assurez-vous que le chemin vers votre photo est correct -->
                 <img src="image/wit.jpg" alt="Photo de profil de Tony Cagnard" class="hero-profile-pic">
             </div>
