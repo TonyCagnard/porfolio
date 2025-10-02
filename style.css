@@ -2,10 +2,10 @@
     --primary-color: #2ecc71; /* Vert trèfle dynamique */
     --orange-color: #f39c12; /* Orange pour "en dev" */
     --red-color: #e74c3c; /* Rouge pour "abandonné" */
-    --dark-color: #000000;
+    --dark-color: #323848;
     --bg-color: #ffffff;
     --bg-light: #f8f9fa;
-    --text-color: #000000;
+    --text-color: #323848;
     --light-text: #7f8c8d;
 }
 html { scroll-behavior: smooth; }
