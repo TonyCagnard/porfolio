@@ -102,3 +102,66 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 4000);
     }
 });
+
+// --- Script pour les flèches du carrousel (VOTRE CODE EXISTANT) ---
+    const wrapper = document.querySelector('.projects-wrapper');
+    const prevButton = document.querySelector('.scroll-arrow.prev');
+    const nextButton = document.querySelector('.scroll-arrow.next');
+
+    if (wrapper && prevButton && nextButton) {
+        // ... votre code pour les boutons next/prev
+        const projectCard = wrapper.querySelector('.project-card');
+        const cardStyle = window.getComputedStyle(projectCard);
+        const cardMarginRight = parseFloat(cardStyle.marginRight) || 0;
+        const cardWidth = projectCard.offsetWidth;
+        const wrapperStyle = window.getComputedStyle(wrapper);
+        const gap = parseFloat(wrapperStyle.gap) || 32;
+        const scrollAmount = cardWidth + gap;
+
+        nextButton.addEventListener('click', () => {
+            wrapper.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+
+        prevButton.addEventListener('click', () => {
+            wrapper.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+    }
+
+    // --- NOUVEAU SCRIPT POUR LE DRAG-TO-SCROLL ---
+    if (wrapper) {
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        wrapper.addEventListener('mousedown', (e) => {
+            isDown = true;
+            wrapper.classList.add('grabbing');
+            // Position de départ du clic
+            startX = e.pageX - wrapper.offsetLeft;
+            // Position de départ du scroll
+            scrollLeft = wrapper.scrollLeft;
+            // Empêche le drag par défaut sur les images, etc.
+            e.preventDefault();
+        });
+
+        wrapper.addEventListener('mouseleave', () => {
+            isDown = false;
+            wrapper.classList.remove('grabbing');
+        });
+
+        wrapper.addEventListener('mouseup', () => {
+            isDown = false;
+            wrapper.classList.remove('grabbing');
+        });
+
+        wrapper.addEventListener('mousemove', (e) => {
+            if (!isDown) return; // Ne fait rien si le bouton n'est pas cliqué
+            
+            e.preventDefault();
+            const x = e.pageX - wrapper.offsetLeft;
+            const walk = (x - startX) * 2; // Le *2 rend le scroll plus rapide
+            wrapper.scrollLeft = scrollLeft - walk;
+        });
+    }
+    // --- FIN DU NOUVEAU SCRIPT ---
+

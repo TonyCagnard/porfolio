@@ -126,19 +126,26 @@
                 </div>
                  <div class="language-skill">
                     <p>Python</p>
-                    <div class="progress-bar-container"><div class="progress-bar" style="width: 55%;"></div></div>
+                    <div class="progress-bar-container"><div class="progress-bar" style="width: 10%;"></div></div>
                 </div>
                  <div class="language-skill">
                     <p>JavaScript (Notions)</p>
-                    <div class="progress-bar-container"><div class="progress-bar" style="width: 40%;"></div></div>
+                    <div class="progress-bar-container"><div class="progress-bar" style="width: 5%;"></div></div>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="projets" class="hidden">
-        <h2 class="section-title">Mes Projets</h2>
-        <div class="projects-grid">
+    <h2 class="section-title">Mes Projets</h2>
+
+    <div class="projects-container">
+        <!-- Flèche de navigation gauche -->
+        <button class="scroll-arrow prev" aria-label="Projet précédent">&#10094;</button>
+
+        <!-- Le conteneur qui défilera horizontalement -->
+        <div class="projects-wrapper">
+            <!-- Projet 1 -->
             <div class="project-card">
                 <span class="project-status status-completed">Terminé</span>
                 <video class="project-media" autoplay loop muted playsinline>
@@ -152,6 +159,7 @@
                     <div class="project-links"><a href="#"></a></div>
                 </div>
             </div>
+            <!-- Projet 2 -->
             <div class="project-card">
                 <span class="project-status status-in-progress">En développement</span>
                 <img src="image/mythologie.png" alt="Projet Mythologie" class="project-media">
@@ -162,6 +170,7 @@
                     <div class="project-links"><a href="https://github.com/TonyCagnard/mythpedia">Voir sur GitHub <i class="fas fa-arrow-right"></i></a></div>
                 </div>
             </div>
+            <!-- Projet 3 -->
             <div class="project-card">
                 <span class="project-status status-completed">Terminé</span>
                 <img src="image/wit.jpg" alt="Projet Scripting" class="project-media">
@@ -172,8 +181,34 @@
                     <div class="project-links"><a href="#"></a></div>
                 </div>
             </div>
+            <!-- Projet 4 (Exemple supplémentaire) -->
+            <div class="project-card">
+                <span class="project-status status-in-progress">En développement</span>
+                <img src="https://via.placeholder.com/400x225.png?text=Projet+Cybersécurité" alt="futur projet" class="project-media">
+                <div class="project-content">
+                    <h4>Nouveau Projet à Venir</h4>
+                    <p>Description d'un projet futur qui mettra en avant d'autres compétences techniques.</p>
+                    <div class="project-tags"><span></span><span></span><span></span></div>
+                    <div class="project-links"><a href="#"></a></div>
+                </div>
+            </div>
+             <!-- Projet 5 (Exemple supplémentaire) -->
+            <div class="project-card">
+                <span class="project-status status-in-progress">En développement</span>
+                <img src="https://via.placeholder.com/400x225.png?text=Projet+Cybersécurité" alt="futur projet" class="project-media">
+                <div class="project-content">
+                    <h4>Nouveau Projet à Venir</h4>
+                    <p>Description d'un projet futur qui mettra en avant d'autres compétences techniques.</p>
+                    <div class="project-tags"><span></span><span></span><span></span></div>
+                    <div class="project-links"><a href="#"></a></div>
+                </div>
+            </div>
         </div>
-    </section>
+
+        <!-- Flèche de navigation droite -->
+        <button class="scroll-arrow next" aria-label="Projet suivant">&#10095;</button>
+    </div>
+</section>
     
     <section id="avantages" class="hidden">
         <h2 class="section-title">Les avantages de prendre un alternant</h2>
