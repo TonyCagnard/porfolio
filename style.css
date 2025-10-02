@@ -278,23 +278,4 @@ footer p { margin-top: 20px; font-size: 14px; }
                 height: 100%;
             }
         }
-        .projects-container {
-        padding: 0 10px; /* Réduire l'espace pour les flèches sur mobile */
-        margin: 0 -5%;
-    }
-    .scroll-arrow {
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
-    }
-    .project-card {
-        flex: 0 0 280px; /* Réduire la largeur des cartes sur mobile */
-        width: 280px;
-    }
-    .scroll-arrow.prev {
-        left: 0;
-    }
-    .scroll-arrow.next {
-        right: 0;
-    }
-}
+        
