@@ -133,3 +133,67 @@ footer p { margin-top: 20px; font-size: 14px; }
 .notification.error {
     background-color: var(--red-color); /* Rouge */
 }
+
+.hero-image-container {
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 300px; /* Ajustez la taille du cercle vert si nécessaire */
+            height: 300px;
+            margin-left: 40px; /* Espace entre le texte et l'image */
+        }
+
+        .hero-image {
+            /* Styles pour le cercle vert lui-même */
+            width: 100%;
+            height: 100%;
+            border-radius: 50%; /* Rend le fond rond */
+            border: 8px solid #28a745; /* Couleur verte pour la bordure du cercle */
+            background-color: transparent; /* Ou une autre couleur de fond si vous préférez */
+            display: flex; /* Permet de centrer l'image à l'intérieur */
+            justify-content: center;
+            align-items: center;
+            position: relative; /* Pour un positionnement précis */
+            overflow: hidden; /* Assure que l'image ne déborde pas du cercle */
+        }
+
+        /* Styles pour la photo de profil à l'intérieur du cercle */
+        .hero-profile-pic {
+            display: block; /* Évite les espaces indésirables sous l'image */
+            width: 100%; /* Fait en sorte que l'image prenne 100% de la largeur du conteneur .hero-image */
+            height: 100%; /* Fait en sorte que l'image prenne 100% de la hauteur du conteneur .hero-image */
+            border-radius: 50%; /* Rend l'image elle-même ronde */
+            object-fit: cover; /* Assure que l'image couvre la zone sans déformation */
+            /* Vous pouvez ajouter une petite bordure blanche si vous le souhaitez : */
+            /* border: 3px solid #fff; */
+        }
+
+        /* Responsive pour le hero */
+        @media (max-width: 768px) {
+            #hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-text {
+                margin-right: 0;
+                margin-bottom: 30px;
+            }
+
+            .hero-image-container {
+                margin-left: 0; /* Supprime la marge gauche sur mobile */
+                width: 200px; /* Taille plus petite pour le conteneur sur mobile */
+                height: 200px;
+            }
+
+            .hero-profile-pic {
+                width: 90%; /* Légère modification pour mobile */
+                height: 90%;
+            }
+
+            .hero-image {
+                width: 100%; /* S'adapte à la taille du conteneur hero-image-container */
+                height: 100%;
+            }
+        }
