@@ -35,6 +35,18 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('show');
+                
+                // Animation pour les barres de progression
+                if (entry.target.classList.contains('skill-category')) {
+                    const progressBars = entry.target.querySelectorAll('.progress-bar');
+                    progressBars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 200);
+                    });
+                }
             }
         });
     }, {
@@ -43,6 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const hiddenElements = document.querySelectorAll('.hidden');
     hiddenElements.forEach(el => observer.observe(el));
+    
+    // Observer spécifique pour les catégories de compétences
+    const skillCategories = document.querySelectorAll('.skill-category');
+    skillCategories.forEach(category => {
+        observer.observe(category);
+    });
 
     // --- NOUVELLE LOGIQUE POUR LE FORMULAIRE DE CONTACT (AJAX) ---
     const form = document.getElementById('contact-form');
