@@ -85,6 +85,22 @@ document.addEventListener('DOMContentLoaded', () => {
             timelineObserver.observe(event);
         });
     }
+    
+    // Observer pour le formulaire de contact
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+        const contactObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        contactObserver.observe(contactForm);
+    }
 
     // --- NOUVELLE LOGIQUE POUR LE FORMULAIRE DE CONTACT (AJAX) ---
     const form = document.getElementById('contact-form');
