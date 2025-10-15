@@ -61,6 +61,30 @@ document.addEventListener('DOMContentLoaded', () => {
     skillCategories.forEach(category => {
         observer.observe(category);
     });
+    
+    // Observer pour la timeline
+    const timelineWrapper = document.querySelector('.timeline-wrapper');
+    if (timelineWrapper) {
+        observer.observe(timelineWrapper);
+        
+        // Animation pour les événements de la timeline
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        const timelineEvents = document.querySelectorAll('.timeline-event');
+        timelineEvents.forEach((event, index) => {
+            // Ajouter un délai d'animation progressif
+            event.style.transitionDelay = `${index * 0.1}s`;
+            timelineObserver.observe(event);
+        });
+    }
 
     // --- NOUVELLE LOGIQUE POUR LE FORMULAIRE DE CONTACT (AJAX) ---
     const form = document.getElementById('contact-form');
