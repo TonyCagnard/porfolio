@@ -7,12 +7,30 @@
     --bg-light: #f9fafb; /* Blanc très doux pour les éléments de contraste (cartes, etc.) */
     --text-color: #222f3e; /* Gris-noir légèrement bleuté pour un bon contraste */
     --light-text: #576574; /* Gris moyen lisible pour le texte secondaire */
+    --navbar-bg: rgba(255, 255, 255, 0.95); /* Fond de la barre de navigation */
+    --card-bg: white; /* Fond des cartes */
+    --border-color: #ecf0f1; /* Couleur des bordures */
+}
+
+/* Styles pour le mode sombre */
+[data-theme="dark"] {
+    --primary-color: #2ecc71; /* Vert plus clair pour le mode sombre */
+    --orange-color: #f39c12; /* Orange plus lumineux */
+    --red-color: #e74c3c; /* Rouge plus vif */
+    --dark-color: #f8f9fa; /* Texte clair pour le mode sombre */
+    --bg-color: #1a1a1a; /* Fond sombre */
+    --bg-light: #2d2d2d; /* Fond légèrement plus clair pour les cartes */
+    --text-color: #e9ecef; /* Texte principal clair */
+    --light-text: #adb5bd; /* Texte secondaire plus discret */
+    --navbar-bg: rgba(26, 26, 26, 0.95); /* Fond de la barre de navigation sombre */
+    --card-bg: #2d2d2d; /* Fond des cartes sombres */
+    --border-color: #495057; /* Bordures plus sombres */
 }
 
 
 html { scroll-behavior: smooth; }
 body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding-top: 70px; }
-.navbar { position: fixed; top: 0; left: 0; width: 100%; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 15px 10%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; box-sizing: border-box; }
+.navbar { position: fixed; top: 0; left: 0; width: 100%; background-color: var(--navbar-bg); backdrop-filter: blur(10px); box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 15px 10%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; box-sizing: border-box; }
 .nav-logo { font-weight: 700; font-size: 24px; color: var(--dark-color); text-decoration: none; }
 .nav-links { list-style: none; margin: 0; padding: 0; display: flex; }
 .nav-links li { margin-left: 30px; }
@@ -22,9 +40,41 @@ section { padding: 100px 10%; }
 .section-title { text-align: center; font-size: 36px; font-weight: 700; margin-bottom: 60px; color: var(--dark-color); position: relative; }
 .section-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background-color: var(--primary-color); border-radius: 2px; }
 
-/* ======== SECTIONS AVEC FOND BLANC UNIFIÉ ======== */
+/* ======== SECTIONS AVEC FOND UNIFIÉ ======== */
 #hero, #projets, #interets, #certifications, #avantages, #contact, #parcours, #competences {
     background-color: var(--bg-color);
+}
+
+/* Styles pour le bouton de bascule de thème */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+}
+
+.theme-toggle-btn {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.theme-toggle-btn:hover {
+    background-color: rgba(39, 174, 96, 0.1);
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+[data-theme="dark"] .theme-toggle-btn:hover {
+    background-color: rgba(46, 204, 113, 0.2);
 }
 
 #hero {
@@ -35,7 +85,7 @@ section { padding: 100px 10%; }
     min-height: calc(100vh - 70px);
     padding: 5px 10%;
     position: relative;
-    background-color: #ffffff
+    background-color: var(--bg-color);
 }
 
 .hero-text {
@@ -200,7 +250,7 @@ section { padding: 100px 10%; }
 }
 
 .secondary {
-    background-color: white;
+    background-color: var(--card-bg);
     color: var(--primary-color);
     border: 2px solid var(--primary-color);
 }
@@ -252,7 +302,7 @@ section { padding: 100px 10%; }
     background-position: center;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    border: 4px solid white;
+    border: 4px solid var(--card-bg);
 }
 
 .hero-image img {
@@ -283,7 +333,7 @@ section { padding: 100px 10%; }
     align-items: center;
     width: 45px;
     height: 45px;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: var(--card-bg);
     color: var(--primary-color);
     border-radius: 50%;
     font-size: 18px;
@@ -297,6 +347,11 @@ section { padding: 100px 10%; }
     color: white;
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(39, 174, 96, 0.3);
+}
+
+[data-theme="dark"] .hero-social a {
+    background-color: rgba(45, 45, 45, 0.9);
+    border: 1px solid var(--border-color);
 }
 
 @keyframes fadeInDown {
@@ -350,7 +405,7 @@ section { padding: 100px 10%; }
 }
 
 .skill-category {
-    background-color: white;
+    background-color: var(--card-bg);
     border-radius: 15px;
     padding: 25px;
     box-shadow: 0 8px 25px rgba(39, 174, 96, 0.08);
@@ -407,6 +462,10 @@ section { padding: 100px 10%; }
 
 .skill-category li:hover {
     background-color: rgba(39, 174, 96, 0.05);
+}
+
+[data-theme="dark"] .skill-category li:hover {
+    background-color: rgba(39, 174, 96, 0.15);
 }
 
 .skill-category li i {
@@ -503,8 +562,8 @@ section { padding: 100px 10%; }
 
 .project-card {
     flex: 0 0 450px;
-    background: white;
-    border: 1px solid #ecf0f1; /* Ajout d'une bordure discrète */
+    background: var(--card-bg);
+    border: 1px solid var(--border-color); /* Ajout d'une bordure discrète */
     border-radius: 10px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.07);
     overflow: hidden;
@@ -518,10 +577,10 @@ section { padding: 100px 10%; }
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: var(--card-bg);
     backdrop-filter: blur(4px);
-    color: var(--dark-color);
-    border: 1px solid #ddd;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
     border-radius: 50%;
     width: 45px;
     height: 45px;
@@ -547,7 +606,7 @@ section { padding: 100px 10%; }
 .scroll-arrow.next { right: 10px; }
 
 .project-card:hover { transform: translateY(-10px); }
-.project-media { width: 100%; height: 350px; object-fit: cover; border-bottom: 1px solid #ecf0f1;}
+.project-media { width: 100%; height: 350px; object-fit: cover; border-bottom: 1px solid var(--border-color);}
 .project-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
 .project-content h4 { margin: 0 0 10px 0; font-size: 20px; color: var(--dark-color); }
 .project-content p { font-size: 14px; color: var(--light-text); line-height: 1.6; flex-grow: 1; }
@@ -559,7 +618,7 @@ section { padding: 100px 10%; }
 .status-in-progress { background-color: var(--orange-color); }
 .status-abandoned { background-color: var(--red-color); }
 .advantages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-.advantage-card { background: var(--bg-light); border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; overflow: hidden; }
+.advantage-card { background: var(--card-bg); border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; overflow: hidden; }
 .advantage-card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
 .advantage-card-image { width: 100%; height: 450px; object-fit: cover; }
 .advantage-card-content { padding: 30px; text-align: center; }
@@ -622,7 +681,7 @@ section { padding: 100px 10%; }
 }
 
 .timeline-content {
-    background-color: white;
+    background-color: var(--card-bg);
     padding: 25px;
     border-radius: 12px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.05);
@@ -640,7 +699,7 @@ section { padding: 100px 10%; }
     height: 0;
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
-    border-right: 10px solid white;
+    border-right: 10px solid var(--card-bg);
 }
 
 .timeline-content:hover {
@@ -770,7 +829,7 @@ section { padding: 100px 10%; }
 }
 
 .interest-card {
-    background: white;
+    background: var(--card-bg);
     border: 1px solid rgba(39, 174, 96, 0.1);
     padding: 35px 25px;
     text-align: center;
@@ -918,7 +977,7 @@ section { padding: 100px 10%; }
 }
 
 .contact-info {
-    background-color: white;
+    background-color: var(--card-bg);
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(39, 174, 96, 0.08);
@@ -966,6 +1025,10 @@ section { padding: 100px 10%; }
     transform: translateX(5px);
 }
 
+[data-theme="dark"] .contact-info .contact-detail:hover {
+    background-color: rgba(39, 174, 96, 0.15);
+}
+
 .contact-info .contact-detail i {
     color: var(--primary-color);
     font-size: 22px;
@@ -987,7 +1050,7 @@ section { padding: 100px 10%; }
 }
 
 .contact-form {
-    background-color: white;
+    background-color: var(--card-bg);
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(39, 174, 96, 0.08);
@@ -1020,7 +1083,7 @@ section { padding: 100px 10%; }
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
     color: var(--text-color);
-    background-color: rgba(39, 174, 96, 0.02);
+    background-color: var(--bg-light);
     transition: all 0.3s ease;
     box-sizing: border-box;
 }
@@ -1029,7 +1092,7 @@ section { padding: 100px 10%; }
 .contact-form textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    background-color: white;
+    background-color: var(--card-bg);
     box-shadow: 0 0 0 4px rgba(39, 174, 96, 0.1);
 }
 
@@ -1322,6 +1385,7 @@ footer.show p {
 
 @media screen and (max-width: 768px) {
     .navbar { padding: 15px 5%; } .nav-links { display: none; }
+    .theme-toggle { margin-left: auto; }
     section { padding: 80px 5%; }
     #hero {
         padding: 40px 5%;
@@ -1656,8 +1720,8 @@ footer.show p {
 }
 
 .certification-card {
-    background-color: white;
-    border: 1px solid #ecf0f1;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
     border-radius: 10px;
     padding: 30px;
     display: flex;
@@ -1722,7 +1786,7 @@ footer.show p {
     align-items: center;
     margin-top: 25px;
     padding-top: 15px;
-    border-top: 1px solid #ecf0f1;
+    border-top: 1px solid var(--border-color);
 }
 
 .certif-date {
