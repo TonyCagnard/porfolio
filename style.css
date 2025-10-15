@@ -462,11 +462,153 @@ section { padding: 100px 10%; }
         font-size: 14px;
     }
 }
-.interests-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
-.interest-card { background: white; border: 1px solid #ecf0f1; padding: 30px; text-align: center; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s ease; }
-.interest-card:hover { transform: translateY(-5px); }
-.interest-card i { font-size: 48px; color: var(--primary-color); margin-bottom: 20px; }
-.interest-card h4 { margin: 0; font-size: 18px; color: var(--dark-color); }
+.interests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.interest-card {
+    background: white;
+    border: 1px solid rgba(39, 174, 96, 0.1);
+    padding: 35px 25px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(39, 174, 96, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.interest-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, var(--primary-color), #2ecc71);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.interest-card:hover::before {
+    transform: scaleX(1);
+}
+
+.interest-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(39, 174, 96, 0.15);
+    border-color: rgba(39, 174, 96, 0.2);
+}
+
+.interest-card i {
+    font-size: 54px;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.interest-card:hover i {
+    transform: scale(1.1) rotate(5deg);
+    color: #1abc9c;
+}
+
+.interest-card h4 {
+    margin: 0;
+    font-size: 18px;
+    color: var(--dark-color);
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.interest-card:hover h4 {
+    color: var(--primary-color);
+}
+
+/* Animation pour les cartes d'intérêt */
+.interests-grid.show .interest-card {
+    animation: fadeInScale 0.5s ease-out forwards;
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+.interests-grid.show .interest-card:nth-child(1) { animation-delay: 0.1s; }
+.interests-grid.show .interest-card:nth-child(2) { animation-delay: 0.2s; }
+.interests-grid.show .interest-card:nth-child(3) { animation-delay: 0.3s; }
+.interests-grid.show .interest-card:nth-child(4) { animation-delay: 0.4s; }
+.interests-grid.show .interest-card:nth-child(5) { animation-delay: 0.5s; }
+.interests-grid.show .interest-card:nth-child(6) { animation-delay: 0.6s; }
+.interests-grid.show .interest-card:nth-child(7) { animation-delay: 0.7s; }
+
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Icônes spécifiques avec des couleurs différentes */
+.interest-card:nth-child(1) i { color: #3498db; } /* Construction PC - Bleu */
+.interest-card:nth-child(2) i { color: #9b59b6; } /* Développement - Violet */
+.interest-card:nth-child(3) i { color: #e74c3c; } /* Jeu Vidéo - Rouge */
+.interest-card:nth-child(4) i { color: #f39c12; } /* Tennis - Orange */
+.interest-card:nth-child(5) i { color: #d35400; } /* Histoire - Orange foncé */
+.interest-card:nth-child(6) i { color: #16a085; } /* Bowling - Turquoise */
+.interest-card:nth-child(7) i { color: #2980b9; } /* Géographie - Bleu foncé */
+
+.interest-card:hover i {
+    color: var(--primary-color);
+}
+
+/* Responsive pour les centres d'intérêt */
+@media screen and (max-width: 768px) {
+    .interests-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+    }
+    
+    .interest-card {
+        padding: 25px 20px;
+    }
+    
+    .interest-card i {
+        font-size: 42px;
+        margin-bottom: 15px;
+    }
+    
+    .interest-card h4 {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .interests-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .interest-card {
+        padding: 20px 15px;
+    }
+    
+    .interest-card i {
+        font-size: 36px;
+    }
+    
+    .interest-card h4 {
+        font-size: 14px;
+    }
+}
 .contact-container {
     display: grid;
     grid-template-columns: 1fr 1fr;

@@ -101,6 +101,22 @@ document.addEventListener('DOMContentLoaded', () => {
         
         contactObserver.observe(contactForm);
     }
+    
+    // Observer pour les centres d'intérêt
+    const interestsGrid = document.querySelector('.interests-grid');
+    if (interestsGrid) {
+        const interestsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        interestsObserver.observe(interestsGrid);
+    }
 
     // --- NOUVELLE LOGIQUE POUR LE FORMULAIRE DE CONTACT (AJAX) ---
     const form = document.getElementById('contact-form');
