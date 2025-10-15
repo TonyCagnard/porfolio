@@ -117,6 +117,22 @@ document.addEventListener('DOMContentLoaded', () => {
         
         interestsObserver.observe(interestsGrid);
     }
+    
+    // Observer pour le footer
+    const footer = document.querySelector('footer');
+    if (footer) {
+        const footerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        footerObserver.observe(footer);
+    }
 
     // --- NOUVELLE LOGIQUE POUR LE FORMULAIRE DE CONTACT (AJAX) ---
     const form = document.getElementById('contact-form');
