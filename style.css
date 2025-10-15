@@ -36,7 +36,6 @@ section { padding: 100px 10%; }
     padding: 5px 10%;
     position: relative;
     background-color: #ffffff
-    overflow: hidden;
 }
 
 .hero-text {
