@@ -1,5 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- Gestion du mode sombre ---
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const htmlElement = document.documentElement;
+    const themeIcon = themeToggleBtn.querySelector('i');
+    
+    // Vérifier s'il y a un thème enregistré dans le localStorage
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    htmlElement.setAttribute('data-theme', currentTheme);
+    updateThemeIcon(currentTheme);
+    
+    // Fonction pour mettre à jour l'icône du thème
+    function updateThemeIcon(theme) {
+        if (theme === 'dark') {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        } else {
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+    }
+    
+    // Fonction pour basculer le thème
+    function toggleTheme() {
+        const currentTheme = htmlElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        htmlElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+    }
+    
+    // Ajouter un écouteur d'événements au bouton de bascule
+    themeToggleBtn.addEventListener('click', toggleTheme);
+
     // --- Animation de frappe ---
     const typingElement = document.getElementById('typing-effect');
     if (typingElement) {
@@ -35,6 +69,18 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('show');
+                
+                // Animation pour les barres de progression
+                if (entry.target.classList.contains('skill-category')) {
+                    const progressBars = entry.target.querySelectorAll('.progress-bar');
+                    progressBars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 200);
+                    });
+                }
             }
         });
     }, {
@@ -43,6 +89,84 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const hiddenElements = document.querySelectorAll('.hidden');
     hiddenElements.forEach(el => observer.observe(el));
+    
+    // Observer spécifique pour les catégories de compétences
+    const skillCategories = document.querySelectorAll('.skill-category');
+    skillCategories.forEach(category => {
+        observer.observe(category);
+    });
+    
+    // Observer pour la timeline
+    const timelineWrapper = document.querySelector('.timeline-wrapper');
+    if (timelineWrapper) {
+        observer.observe(timelineWrapper);
+        
+        // Animation pour les événements de la timeline
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        const timelineEvents = document.querySelectorAll('.timeline-event');
+        timelineEvents.forEach((event, index) => {
+            // Ajouter un délai d'animation progressif
+            event.style.transitionDelay = `${index * 0.1}s`;
+            timelineObserver.observe(event);
+        });
+    }
+    
+    // Observer pour le formulaire de contact
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+        const contactObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        contactObserver.observe(contactForm);
+    }
+    
+    // Observer pour les centres d'intérêt
+    const interestsGrid = document.querySelector('.interests-grid');
+    if (interestsGrid) {
+        const interestsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        interestsObserver.observe(interestsGrid);
+    }
+    
+    // Observer pour le footer
+    const footer = document.querySelector('footer');
+    if (footer) {
+        const footerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        footerObserver.observe(footer);
+    }
 
     // --- NOUVELLE LOGIQUE POUR LE FORMULAIRE DE CONTACT (AJAX) ---
     const form = document.getElementById('contact-form');
