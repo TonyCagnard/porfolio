@@ -364,6 +364,84 @@ document.addEventListener('DOMContentLoaded', () => {
             
             wrapper.scrollLeft = scrollLeft - walk;
         });
+<<<<<<< HEAD
+=======
+
+        // Fonction pour appliquer l'inertie
+        function applyInertia() {
+            if (Math.abs(velocity) > 0.5) {
+                wrapper.scrollLeft -= velocity;
+                velocity *= 0.95; // Décélération
+                
+                animationFrame = requestAnimationFrame(applyInertia);
+            } else {
+                // Alignement automatique sur la carte la plus proche
+                snapToNearestCard();
+            }
+        }
+
+        // Fonction pour aligner sur la carte la plus proche
+        function snapToNearestCard() {
+            const scrollAmount = calculateScrollAmount();
+            const currentIndex = Math.round(wrapper.scrollLeft / scrollAmount);
+            
+            wrapper.scrollTo({
+                left: currentIndex * scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+    }
+
+    // --- Fonction utilitaire pour calculer le scrollAmount ---
+    function calculateScrollAmount() {
+        if (!wrapper) return 0;
+        
+        const projectCard = wrapper.querySelector('.project-card');
+        if (!projectCard) return 0;
+        
+        const cardStyle = window.getComputedStyle(projectCard);
+        const wrapperStyle = window.getComputedStyle(wrapper);
+        const cardWidth = projectCard.offsetWidth;
+        const gap = parseFloat(wrapperStyle.gap) || 30;
+        
+        return cardWidth + gap;
+    }
+
+    // --- AJOUT D'EFFETS VISUELS SUPPLÉMENTAIRES ---
+    // Observer les cartes de projet pour des animations au scroll
+    const projectCards = document.querySelectorAll('.project-card');
+    const projectObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, {
+        threshold: 0.2,
+        root: wrapper
+    });
+
+    projectCards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        projectObserver.observe(card);
+    });
+
+    // --- AMÉLIORATION DE L'ACCESSIBILITÉ ---
+    // Gestion du focus clavier pour les flèches
+    if (prevButton && nextButton) {
+        [prevButton, nextButton].forEach(button => {
+            button.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    button.click();
+                }
+            });
+        });
+    }
+>>>>>>> e061734 (chnagement design projet)
 
         // Fonction pour appliquer l'inertie
         function applyInertia() {
