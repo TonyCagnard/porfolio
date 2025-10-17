@@ -227,65 +227,215 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// --- Script pour les flèches du carrousel (VOTRE CODE EXISTANT) ---
+// --- Script amélioré pour les flèches du carrousel ---
     const wrapper = document.querySelector('.projects-wrapper');
     const prevButton = document.querySelector('.scroll-arrow.prev');
     const nextButton = document.querySelector('.scroll-arrow.next');
+    const scrollDots = document.querySelectorAll('.scroll-dot');
+    const projectsContainer = document.querySelector('.projects-container');
 
     if (wrapper && prevButton && nextButton) {
-        // ... votre code pour les boutons next/prev
-        const projectCard = wrapper.querySelector('.project-card');
-        const cardStyle = window.getComputedStyle(projectCard);
-        const cardMarginRight = parseFloat(cardStyle.marginRight) || 0;
-        const cardWidth = projectCard.offsetWidth;
-        const wrapperStyle = window.getComputedStyle(wrapper);
-        const gap = parseFloat(wrapperStyle.gap) || 32;
-        const scrollAmount = cardWidth + gap;
+        // Calcul du scrollAmount
+        function calculateScrollAmount() {
+            const projectCard = wrapper.querySelector('.project-card');
+            if (!projectCard) return 0;
+            
+            const cardStyle = window.getComputedStyle(projectCard);
+            const wrapperStyle = window.getComputedStyle(wrapper);
+            const cardWidth = projectCard.offsetWidth;
+            const gap = parseFloat(wrapperStyle.gap) || 30;
+            
+            return cardWidth + gap;
+        }
 
+        // Mise à jour des indicateurs de défilement
+        function updateScrollIndicators() {
+            const scrollAmount = calculateScrollAmount();
+            const currentIndex = Math.round(wrapper.scrollLeft / scrollAmount);
+            
+            scrollDots.forEach((dot, index) => {
+                if (index === currentIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        // Gestion du clic sur les flèches
         nextButton.addEventListener('click', () => {
-            wrapper.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            const scrollAmount = calculateScrollAmount();
+            wrapper.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
         });
 
         prevButton.addEventListener('click', () => {
-            wrapper.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            const scrollAmount = calculateScrollAmount();
+            wrapper.scrollBy({
+                left: -scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+
+        // Gestion du clic sur les indicateurs
+        scrollDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                const scrollAmount = calculateScrollAmount();
+                wrapper.scrollTo({
+                    left: index * scrollAmount,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Écouteur d'événement pour le défilement
+        wrapper.addEventListener('scroll', updateScrollIndicators);
+        
+        // Initialisation des indicateurs
+        setTimeout(updateScrollIndicators, 100);
+        
+        // Gestion du redimensionnement de la fenêtre
+        window.addEventListener('resize', () => {
+            setTimeout(updateScrollIndicators, 100);
         });
     }
 
-    // --- NOUVEAU SCRIPT POUR LE DRAG-TO-SCROLL ---
+    // --- SCRIPT AMÉLIORÉ POUR LE DRAG-TO-SCROLL ---
     if (wrapper) {
         let isDown = false;
         let startX;
         let scrollLeft;
+        let velocity = 0;
+        let animationFrame = null;
 
         wrapper.addEventListener('mousedown', (e) => {
             isDown = true;
             wrapper.classList.add('grabbing');
+            
             // Position de départ du clic
             startX = e.pageX - wrapper.offsetLeft;
+            
             // Position de départ du scroll
             scrollLeft = wrapper.scrollLeft;
+            
+            // Réinitialise la vélocité
+            velocity = 0;
+            
+            // Annule toute animation en cours
+            if (animationFrame) {
+                cancelAnimationFrame(animationFrame);
+            }
+            
             // Empêche le drag par défaut sur les images, etc.
             e.preventDefault();
         });
 
         wrapper.addEventListener('mouseleave', () => {
+            if (!isDown) return;
+            
             isDown = false;
             wrapper.classList.remove('grabbing');
+            
+            // Applique l'inertie
+            applyInertia();
         });
 
         wrapper.addEventListener('mouseup', () => {
+            if (!isDown) return;
+            
             isDown = false;
             wrapper.classList.remove('grabbing');
+            
+            // Applique l'inertie
+            applyInertia();
         });
 
         wrapper.addEventListener('mousemove', (e) => {
-            if (!isDown) return; // Ne fait rien si le bouton n'est pas cliqué
+            if (!isDown) return;
             
             e.preventDefault();
             const x = e.pageX - wrapper.offsetLeft;
             const walk = (x - startX) * 2; // Le *2 rend le scroll plus rapide
+            
+            // Calcule la vélocité pour l'inertie
+            velocity = walk;
+            
             wrapper.scrollLeft = scrollLeft - walk;
         });
-    }
-    // --- FIN DU NOUVEAU SCRIPT ---
 
+        // Fonction pour appliquer l'inertie
+        function applyInertia() {
+            if (Math.abs(velocity) > 0.5) {
+                wrapper.scrollLeft -= velocity;
+                velocity *= 0.95; // Décélération
+                
+                animationFrame = requestAnimationFrame(applyInertia);
+            } else {
+                // Alignement automatique sur la carte la plus proche
+                snapToNearestCard();
+            }
+        }
+
+        // Fonction pour aligner sur la carte la plus proche
+        function snapToNearestCard() {
+            const scrollAmount = calculateScrollAmount();
+            const currentIndex = Math.round(wrapper.scrollLeft / scrollAmount);
+            
+            wrapper.scrollTo({
+                left: currentIndex * scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+    }
+
+    // --- Fonction utilitaire pour calculer le scrollAmount ---
+    function calculateScrollAmount() {
+        if (!wrapper) return 0;
+        
+        const projectCard = wrapper.querySelector('.project-card');
+        if (!projectCard) return 0;
+        
+        const cardStyle = window.getComputedStyle(projectCard);
+        const wrapperStyle = window.getComputedStyle(wrapper);
+        const cardWidth = projectCard.offsetWidth;
+        const gap = parseFloat(wrapperStyle.gap) || 30;
+        
+        return cardWidth + gap;
+    }
+
+    // --- AJOUT D'EFFETS VISUELS SUPPLÉMENTAIRES ---
+    // Observer les cartes de projet pour des animations au scroll
+    const projectCards = document.querySelectorAll('.project-card');
+    const projectObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, {
+        threshold: 0.2,
+        root: wrapper
+    });
+
+    projectCards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        projectObserver.observe(card);
+    });
+
+    // --- AMÉLIORATION DE L'ACCESSIBILITÉ ---
+    // Gestion du focus clavier pour les flèches
+    if (prevButton && nextButton) {
+        [prevButton, nextButton].forEach(button => {
+            button.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    button.click();
+                }
+            });
+        });
+    }

@@ -171,78 +171,139 @@
     </section>
 
     <section id="projets" class="hidden">
-    <h2 class="section-title">Mes Projets</h2>
-
-    <div class="projects-container">
-        <!-- Flèche de navigation gauche -->
-        <button class="scroll-arrow prev" aria-label="Projet précédent">&#10094;</button>
-
-        <!-- Le conteneur qui défilera horizontalement -->
-        <div class="projects-wrapper">
-            <!-- Projet 1 -->
-            <div class="project-card">
-                <span class="project-status status-completed">Terminé</span>
-                <video class="project-media" autoplay loop muted playsinline>
-                    <source src="image/VID_20250507_091750.mp4" type="video/mp4">
-                    Votre navigateur ne supporte pas la vidéo.
-                </video>
-                <div class="project-content">
-                    <h4>Projet Ruban LED RGB</h4>
-                    <p>Création d'un système de ruban LED contrôlé, démontrant des compétences en électronique et en programmation de base en Arduino.</p>
-                    <div class="project-tags"><span>Électronique</span><span>Arduino/ESP</span><span>Travail de Groupe</span></div>
-                    <div class="project-links"><a href="#"></a></div>
-                </div>
-            </div>
-            <!-- Projet 2 -->
-            <div class="project-card">
-                <span class="project-status status-in-progress">En développement</span>
-                <img src="image/mythologie.png" alt="Projet Mythologie" class="project-media">
-                <div class="project-content">
-                    <h4>Site web sur les mythologies</h4>
-                    <p>J'ai fait un site web en Django sur les mythologies du monde intitulé MythPédia.</p>
-                    <div class="project-tags"><span>Django</span><span>Python</span><span>HTML/CSS</span></div>
-                    <div class="project-links"><a href="https://github.com/TonyCagnard/mythpedia">Voir sur GitHub <i class="fas fa-arrow-right"></i></a></div>
-                </div>
-            </div>
-            <!-- Projet 3 -->
-            <div class="project-card">
-                <span class="project-status status-in-progress">En développement</span>
-                <img src="image/wit.jpg" alt="Projet Scripting" class="project-media">
-                <div class="project-content">
-                    <h4>Jeux de combat 2.5D environnement 3D</h4>
-                    <p>Création d'un jeux vidéo inspiré de Mortal Kombat.</p>
-                    <div class="project-tags"><span>Blueprint</span><span>Unreal Engine</span><span>3D</span></div>
-                    <div class="project-links"><a href="#"></a></div>
-                </div>
-            </div>
-            <!-- Projet 4 (Exemple supplémentaire) -->
-            <div class="project-card">
-                <span class="project-status status-in-progress">En développement</span>
-                <img src="image/wit.jpg" alt="futur projet" class="project-media">
-                <div class="project-content">
-                    <h4>Nouveau Projet à Venir</h4>
-                    <p>Description d'un projet futur qui mettra en avant d'autres compétences techniques.</p>
-                    <div class="project-tags"><span></span><span></span><span></span></div>
-                    <div class="project-links"><a href="#"></a></div>
-                </div>
-            </div>
-             <!-- Projet 5 (Exemple supplémentaire) -->
-            <div class="project-card">
-                <span class="project-status status-in-progress">En développement</span>
-                <img src="image/wit.jpg" alt="futur projet" class="project-media">
-                <div class="project-content">
-                    <h4>Nouveau Projet à Venir</h4>
-                    <p>Description d'un projet futur qui mettra en avant d'autres compétences techniques.</p>
-                    <div class="project-tags"><span></span><span></span><span></span></div>
-                    <div class="project-links"><a href="#"></a></div>
-                </div>
-            </div>
+        <div class="section-header">
+            <h2 class="section-title">Mes <span>Projets</span></h2>
+            <p class="section-subtitle">Découvrez mes réalisations et mes travaux en cours</p>
         </div>
 
-        <!-- Flèche de navigation droite -->
-        <button class="scroll-arrow next" aria-label="Projet suivant">&#10095;</button>
-    </div>
-</section>
+        <div class="projects-container">
+            <!-- Flèche de navigation gauche -->
+            <button class="scroll-arrow prev" aria-label="Projet précédent">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+
+            <!-- Le conteneur qui défilera horizontalement -->
+            <div class="projects-wrapper">
+                <!-- Projet 1 -->
+                <article class="project-card">
+                    <span class="project-status status-completed">Terminé</span>
+                    <div class="project-media-container">
+                        <video class="project-media" autoplay loop muted playsinline>
+                            <source src="image/VID_20250507_091750.mp4" type="video/mp4">
+                            Votre navigateur ne supporte pas la vidéo.
+                        </video>
+                        <div class="project-media-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <h4>Projet Ruban LED RGB</h4>
+                        <p>Création d'un système de ruban LED contrôlé, démontrant des compétences en électronique et en programmation de base en Arduino.</p>
+                        <div class="project-tags">
+                            <span>Électronique</span>
+                            <span>Arduino/ESP</span>
+                            <span>Travail de Groupe</span>
+                        </div>
+                        <div class="project-links">
+
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Projet 2 -->
+                <article class="project-card">
+                    <span class="project-status status-in-progress">En développement</span>
+                    <div class="project-media-container">
+                        <img src="image/mythologie.png" alt="Projet Mythologie" class="project-media">
+                        <div class="project-media-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <h4>Site web sur les mythologies</h4>
+                        <p>Création d'un site web en Django sur les mythologies du monde intitulé MythPédia.</p>
+                        <div class="project-tags">
+                            <span>Django</span>
+                            <span>Python</span>
+                            <span>HTML/CSS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/TonyCagnard/mythpedia" target="_blank" rel="noopener noreferrer" aria-label="Voir le projet MythPédia sur GitHub">
+                                Voir sur GitHub <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Projet 3 -->
+                <article class="project-card">
+                    <span class="project-status status-in-progress">En développement</span>
+                    <div class="project-media-container">
+                        <img src="image/wit.jpg" alt="Projet Jeu de combat" class="project-media">
+                        <div class="project-media-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <h4>Jeux de combat 2.5D environnement 3D</h4>
+                        <p>Création d'un jeux vidéo inspiré de Mortal Kombat.</p>
+                        <div class="project-tags">
+                            <span>Blueprint</span>
+                            <span>Unreal Engine</span>
+                            <span>2.5D & 3D</span>
+                        </div>
+                        <div class="project-links">
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Projet 4 -->
+                <article class="project-card">
+                    <span class="project-status status-in-progress">En développement</span>
+                    <div class="project-media-container">
+                        <img src="image/wit.jpg" alt="Futur projet" class="project-media">
+                        <div class="project-media-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <h4>Nouveau Projet à Venir</h4>
+                        <p>Description d'un projet futur qui mettra en avant d'autres compétences techniques.</p>
+                        <div class="project-tags">
+                            <span>À venir</span>
+                        </div>
+                        <div class="project-links">
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Projet 5 -->
+                <article class="project-card">
+                    <span class="project-status status-in-progress">En développement</span>
+                    <div class="project-media-container">
+                        <img src="image/wit.jpg" alt="Futur projet" class="project-media">
+                        <div class="project-media-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <h4>Nouveau Projet à Venir</h4>
+                        <p>Description d'un projet futur qui mettra en avant d'autres compétences techniques.</p>
+                        <div class="project-tags">
+                            <span>À venir</span>
+                        </div>
+                        <div class="project-links">
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Flèche de navigation droite -->
+            <button class="scroll-arrow next" aria-label="Projet suivant">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+            <!-- Indicateurs de défilement -->
+            <div class="scroll-indicators">
+                <span class="scroll-dot active" data-index="0"></span>
+                <span class="scroll-dot" data-index="1"></span>
+            </div>
+        </div>
+    </section>
     
     <!-- =================================================================== -->
     <!-- =================== NOUVELLE SECTION CERTIFICATIONS ================= -->
