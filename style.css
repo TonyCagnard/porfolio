@@ -37,7 +37,7 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); co
 .nav-links a { text-decoration: none; color: var(--text-color); font-weight: 600; font-size: 16px; transition: color 0.3s ease; }
 .nav-links a:hover, .nav-links a.active { color: var(--primary-color); }
 section { padding: 100px 10%; }
-.section-title { text-align: center; font-size: 36px; font-weight: 700; margin-bottom: 15px; color: var(--dark-color); position: relative; }
+.section-title { text-align: center; font-size: 36px; font-weight: 700; margin-bottom: 30px; color: var(--dark-color); position: relative; }
 .section-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background-color: var(--primary-color); border-radius: 2px; }
 .section-title span { color: var(--primary-color); }
 
