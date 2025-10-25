@@ -152,6 +152,22 @@ document.addEventListener('DOMContentLoaded', () => {
         interestsObserver.observe(interestsGrid);
     }
     
+    // Observer pour la section avantages
+    const advantagesGrid = document.querySelector('.advantages-grid');
+    if (advantagesGrid) {
+        const advantagesObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        advantagesObserver.observe(advantagesGrid);
+    }
+    
     // Observer pour le footer
     const footer = document.querySelector('footer');
     if (footer) {

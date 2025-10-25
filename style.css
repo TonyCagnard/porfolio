@@ -1004,13 +1004,269 @@ section { padding: 100px 10%; }
         transform: translateX(-50%) translateY(0);
     }
 }
-.advantages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-.advantage-card { background: var(--card-bg); border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; overflow: hidden; }
-.advantage-card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-.advantage-card-image { width: 100%; height: 450px; object-fit: cover; }
-.advantage-card-content { padding: 30px; text-align: center; }
-.advantage-card-content h4 { margin: 0 0 10px 0; font-size: 20px; color: var(--dark-color); }
-.advantage-card-content p { font-size: 15px; line-height: 1.6; color: var(--light-text); margin: 0;}
+/* Section Avantages - Design amélioré */
+.advantages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+    perspective: 1000px;
+}
+
+.advantage-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    position: relative;
+    transform-style: preserve-3d;
+    border: 1px solid rgba(39, 174, 96, 0.1);
+}
+
+.advantage-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-color), #2ecc71);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+    z-index: 2;
+}
+
+.advantage-card:hover::before {
+    transform: scaleX(1);
+}
+
+.advantage-card:hover {
+    transform: translateY(-15px) rotateX(5deg);
+    box-shadow: 0 20px 40px rgba(39, 174, 96, 0.15);
+    border-color: rgba(39, 174, 96, 0.2);
+}
+
+.advantage-card-image-container {
+    position: relative;
+    height: 600px;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(39, 174, 96, 0.05), rgba(46, 204, 113, 0.05));
+}
+
+.advantage-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s ease;
+    filter: brightness(1.05);
+}
+
+.advantage-card:hover .advantage-card-image {
+    transform: scale(1.1);
+    filter: brightness(1.1) saturate(1.1);
+}
+
+.advantage-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(39, 174, 96, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.advantage-card:hover .advantage-card-overlay {
+    opacity: 1;
+}
+
+.advantage-card-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transform: scale(0);
+    transition: transform 0.3s ease;
+    z-index: 3;
+}
+
+.advantage-card-icon i {
+    font-size: 24px;
+    color: var(--primary-color);
+}
+
+.advantage-card:hover .advantage-card-icon {
+    transform: scale(1);
+}
+
+.advantage-card-content {
+    padding: 35px 30px;
+    text-align: center;
+    position: relative;
+}
+
+.advantage-card-content::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    background: var(--card-bg);
+    border-radius: 50%;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+}
+
+.advantage-card-content h4 {
+    margin: 0 0 15px 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--dark-color);
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.advantage-card:hover .advantage-card-content h4 {
+    color: var(--primary-color);
+}
+
+.advantage-card-content h4::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), #2ecc71);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.advantage-card:hover .advantage-card-content h4::after {
+    width: 80px;
+}
+
+.advantage-card-content p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--light-text);
+    margin: 20px 0 0 0;
+    transition: color 0.3s ease;
+}
+
+.advantage-card:hover .advantage-card-content p {
+    color: var(--text-color);
+}
+
+/* Animation d'apparition pour les cartes d'avantages */
+.advantages-grid.show .advantage-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUpAdvantage 0.6s ease-out forwards;
+}
+
+.advantages-grid.show .advantage-card:nth-child(1) { animation-delay: 0.1s; }
+.advantages-grid.show .advantage-card:nth-child(2) { animation-delay: 0.2s; }
+.advantages-grid.show .advantage-card:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes fadeInUpAdvantage {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Effet de brillance au survol */
+.advantage-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 70%
+    );
+    transform: rotate(45deg) translateX(-100%);
+    transition: transform 0.6s;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.advantage-card:hover::after {
+    transform: rotate(45deg) translateX(100%);
+}
+
+/* Icônes spécifiques pour chaque carte */
+.advantage-card:nth-child(1) .advantage-card-icon i::before { content: '\f0c0'; } /* Utilisateurs */
+.advantage-card:nth-child(2) .advantage-card-icon i::before { content: '\f3d1'; } /* Euro */
+.advantage-card:nth-child(3) .advantage-card-icon i::before { content: '\f19d'; } /* Graduation */
+
+/* Responsive pour la section avantages */
+@media screen and (max-width: 768px) {
+    .advantages-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-top: 40px;
+    }
+    
+    .advantage-card {
+        border-radius: 15px;
+    }
+    
+    .advantage-card-image-container {
+        height: 180px;
+    }
+    
+    .advantage-card-content {
+        padding: 25px 20px;
+    }
+    
+    .advantage-card-content h4 {
+        font-size: 20px;
+    }
+    
+    .advantage-card-content p {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .advantage-card-image-container {
+        height: 160px;
+    }
+    
+    .advantage-card-content {
+        padding: 20px 15px;
+    }
+    
+    .advantage-card-content h4 {
+        font-size: 18px;
+    }
+    
+    .advantage-card-content p {
+        font-size: 14px;
+    }
+}
 .timeline-wrapper {
     position: relative;
     max-width: 900px;
