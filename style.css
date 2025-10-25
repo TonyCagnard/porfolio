@@ -1050,7 +1050,6 @@ section { padding: 100px 10%; }
 
 .advantage-card-image-container {
     position: relative;
-    height: 600px;
     overflow: hidden;
     background: linear-gradient(135deg, rgba(39, 174, 96, 0.05), rgba(46, 204, 113, 0.05));
 }
