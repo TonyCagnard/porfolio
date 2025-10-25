@@ -168,6 +168,22 @@ document.addEventListener('DOMContentLoaded', () => {
         advantagesObserver.observe(advantagesGrid);
     }
     
+    // Observer pour la section Stack Technique
+    const stackCategories = document.querySelector('.stack-categories');
+    if (stackCategories) {
+        const stackObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        stackObserver.observe(stackCategories);
+    }
+    
     // Observer pour le footer
     const footer = document.querySelector('footer');
     if (footer) {

@@ -55,7 +55,7 @@ section { padding: 100px 10%; }
 }
 
 /* ======== SECTIONS AVEC FOND UNIFIÉ ======== */
-#hero, #projets, #interets, #certifications, #avantages, #contact, #parcours, #competences {
+#hero, #projets, #interets, #certifications, #stack, #avantages, #contact, #parcours, #competences {
     background-color: var(--bg-color);
 }
 
@@ -2694,4 +2694,316 @@ certif-title p {
     
     .scroll-arrow.prev { left: -5px; }
     .scroll-arrow.next { right: -5px; }
+}
+
+/* Styles pour la section Stack Technique */
+.stack-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 60px;
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--light-text);
+}
+
+.stack-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.stack-category {
+    background-color: var(--card-bg);
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border: 1px solid rgba(39, 174, 96, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.stack-category::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-color), #2ecc71);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+    z-index: 2;
+}
+
+.stack-category:hover::before {
+    transform: scaleX(1);
+}
+
+.stack-category:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(39, 174, 96, 0.15);
+    border-color: rgba(39, 174, 96, 0.2);
+}
+
+.stack-category h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.stack-category h3 i {
+    color: var(--primary-color);
+    font-size: 28px;
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.tech-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: var(--bg-light);
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.tech-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(39, 174, 96, 0.1);
+    border-color: rgba(39, 174, 96, 0.2);
+    background-color: var(--card-bg);
+}
+
+.tech-logo {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    background-color: var(--card-bg);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    flex-shrink: 0;
+}
+
+.tech-logo i {
+    font-size: 32px;
+    transition: transform 0.3s ease;
+}
+
+.tech-logo .custom-logo {
+    font-weight: 700;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.tech-item:hover .tech-logo i {
+    transform: scale(1.1);
+}
+
+.tech-info {
+    flex: 1;
+}
+
+.tech-info h4 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--dark-color);
+    margin: 0 0 5px 0;
+    transition: color 0.3s ease;
+}
+
+.tech-item:hover .tech-info h4 {
+    color: var(--primary-color);
+}
+
+.tech-info p {
+    font-size: 15px;
+    color: var(--light-text);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Animation d'apparition pour les catégories de stack */
+.stack-categories.show .stack-category {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUpStack 0.6s ease-out forwards;
+}
+
+.stack-categories.show .stack-category:nth-child(1) { animation-delay: 0.1s; }
+.stack-categories.show .stack-category:nth-child(2) { animation-delay: 0.2s; }
+.stack-categories.show .stack-category:nth-child(3) { animation-delay: 0.3s; }
+.stack-categories.show .stack-category:nth-child(4) { animation-delay: 0.4s; }
+.stack-categories.show .stack-category:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeInUpStack {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Effet de brillance au survol */
+.stack-category::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 70%
+    );
+    transform: rotate(45deg) translateX(-100%);
+    transition: transform 0.6s;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.stack-category:hover::after {
+    transform: rotate(45deg) translateX(100%);
+}
+
+/* Responsive pour la section Stack Technique */
+@media screen and (max-width: 768px) {
+    .stack-intro {
+        font-size: 16px;
+        margin: 0 auto 40px;
+    }
+    
+    .stack-categories {
+        gap: 30px;
+    }
+    
+    .stack-category {
+        padding: 25px;
+        border-radius: 15px;
+    }
+    
+    .stack-category h3 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .stack-category h3 i {
+        font-size: 24px;
+    }
+    
+    .tech-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
+    }
+    
+    .tech-item {
+        padding: 15px;
+        gap: 15px;
+    }
+    
+    .tech-logo {
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+    }
+    
+    .tech-logo i {
+        font-size: 28px;
+    }
+    
+    .tech-logo .custom-logo {
+        font-size: 16px;
+    }
+    
+    .tech-info h4 {
+        font-size: 18px;
+    }
+    
+    .tech-info p {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .stack-intro {
+        font-size: 15px;
+        margin: 0 auto 30px;
+    }
+    
+    .stack-categories {
+        gap: 25px;
+    }
+    
+    .stack-category {
+        padding: 20px;
+        border-radius: 12px;
+    }
+    
+    .stack-category h3 {
+        font-size: 18px;
+        margin-bottom: 15px;
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+    
+    .stack-category h3 i {
+        font-size: 22px;
+    }
+    
+    .tech-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .tech-item {
+        padding: 12px;
+        gap: 12px;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .tech-logo {
+        width: 45px;
+        height: 45px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+    
+    .tech-logo i {
+        font-size: 24px;
+    }
+    
+    .tech-logo .custom-logo {
+        font-size: 14px;
+    }
+    
+    .tech-info h4 {
+        font-size: 16px;
+        margin-bottom: 3px;
+    }
+    
+    .tech-info p {
+        font-size: 13px;
+    }
 }
